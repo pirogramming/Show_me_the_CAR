@@ -1,9 +1,8 @@
 from django.shortcuts import render
+from shops.models import *
+
 
 def index(request):
-    pass
+    shops = Shop.objects.all()
+    return render(request, 'shops/index.html', {'shops': shops})
 
-
-def index2(request):
-    # yoobyeonguk's comment
-    pass

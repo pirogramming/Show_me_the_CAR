@@ -4,13 +4,6 @@ from core import models as core_models
 from users.models import *
 
 
-class Rating(core_models.TimeStampedModel):
-
-    """ Rating Model Definition """
-
-    pass
-
-
 class Shop(core_models.TimeStampedModel):
 
     """ Shop Model Definition """
@@ -34,3 +27,17 @@ class Favorite(core_models.TimeStampedModel):
     user = models.ManyToManyField(User, related_name='favorites')
     shop = models.ForeignKey(Shop, related_name='shops', on_delete=models.CASCADE)
     total = models.IntegerField(default=0)
+
+
+class Rating(core_models.TimeStampedModel):
+
+    """ Rating Model Definition """
+
+    user = models.ManyToManyField(User, related_name='ratings')
+    shop = models.ForeignKey(Shop, related_name='shops_rating', on_delete=models.CASCADE)
+    rating = models.SmallIntegerField(default=0)
+    average = models.SmallIntegerField(default=0)
+
+    def __str__(self):
+        return str(self.user)
+
