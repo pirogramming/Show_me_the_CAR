@@ -5,11 +5,6 @@ from users.models import User
 from users.models import *
 
 
-class Rating(core_models.TimeStampedModel):
-    """ Rating Model Definition """
-
-    pass
-
 
 class Shop(core_models.TimeStampedModel):
     """ Shop Model Definition """
@@ -21,15 +16,12 @@ class Shop(core_models.TimeStampedModel):
     address = models.CharField(max_length=80, blank=True)
     homepage = models.URLField(max_length=250, blank=True)
     phone_number = models.IntegerField(blank=True)
+    like_users = models.ManyToManyField(User, related_name='like_posts')
+
+
 
     def __str__(self):
         return self.name
 
 
-class Favorite(core_models.TimeStampedModel):
 
-    """ Favorite Model Definition"""
-
-    user = models.ManyToManyField(User, related_name='favorites')
-    shop = models.ForeignKey(Shop, related_name='shops', on_delete=models.CASCADE)
-    total = models.IntegerField(default=0)

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>현재 사용자: {{ user.username }}</div>
+    {% for shop in shops %}
+        <div>
+            {{ shop.name }}
+            <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
+            <a href="{% url 'shops:like' shop.id %}">
+              {% if user in shop.like_users.all %}
+                <a href="{% url 'shops:like' shop.id %}"><i class="fas fa-heart"></i></a>
+              {% else %}
+                <a href="{% url 'shops:like' shop.id %}"><i class="far fa-heart"></i></a>
+              {% endif %}
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

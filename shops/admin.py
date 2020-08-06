@@ -10,3 +10,6 @@ class ShopAdmin(admin.ModelAdmin):
     """ Shop Admin Definition """
     list_display = ['name',]
     list_display_links = ['name', ]
+
+
+
