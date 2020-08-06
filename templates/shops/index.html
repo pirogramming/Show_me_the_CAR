@@ -7,7 +7,11 @@
 <body>
 
 {% for shop in shops %}
-    <a href="">{{ shop }}</a>
+    <ul>
+        <li>
+            <a href="{% url 'shops:give_rating' pk=shop.pk %}">{{ shop }}</a>
+        </li>
+    </ul>
 {% endfor %}
 
 </body>
