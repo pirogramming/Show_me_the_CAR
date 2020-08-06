@@ -22,9 +22,6 @@ class Shop(core_models.TimeStampedModel):
     homepage = models.URLField(max_length=250, blank=True)
     phone_number = models.IntegerField(blank=True)
 
-    # favorite, star
-    favorite = models.ManyToManyField(User)
-
     def __str__(self):
         return self.name
 
@@ -34,5 +31,5 @@ class Favorite(core_models.TimeStampedModel):
     """ Favorite Model Definition"""
 
     user = models.ManyToManyField(User, related_name='favorites')
-    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    shop = models.ForeignKey(Shop, related_name='shops', on_delete=models.CASCADE)
     total = models.IntegerField(default=0)
