@@ -24,9 +24,7 @@ class Favorite(core_models.TimeStampedModel):
 
     """ Favorite Model Definition"""
 
-    user = models.ManyToManyField(User, related_name='favorites')
-    shop = models.ForeignKey(Shop, related_name='shops', on_delete=models.CASCADE)
-    total = models.IntegerField(default=0)
+    pass
 
 
 class Rating(core_models.TimeStampedModel):
