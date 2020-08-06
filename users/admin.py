@@ -7,5 +7,5 @@ from . import models
 class CustomUserAdmin(UserAdmin):
 
     """ Custom User Admin """
-
-    pass
+    list_display = ['username']
+    list_display_links = ['username']
