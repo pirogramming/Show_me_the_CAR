@@ -12,4 +12,8 @@ class ShopAdmin(admin.ModelAdmin):
     list_display_links = ['name', ]
 
 
+@admin.register(models.Rating)
+class RatingAdmin(admin.ModelAdmin):
+
+    pass
 

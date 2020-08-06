@@ -9,9 +9,14 @@ def give_rating(request, id):
     # POST 방식
     # 나의 평점을 POST 방식으로 추가하면 rating query에 평점이 등록됨
     if request.method == 'POST':
-        rating = get_object_or_404(Rating, id=id)
-        rating.Rating = request.POST['rating']
-        rating.save()
+        my_rating = request.POST.get('rating', None)
+        if my_rating:
+            shop = Shop.objects.get(id=id)
+            Rating.objects.create(
+                shop=shop,
+                rating=my_rating
+            )
+
         return redirect(reverse('shops:give_rating', kwargs={'id': id}))
 
     # GET 방식
@@ -25,7 +30,10 @@ def give_rating(request, id):
     for r in ratings:
         r_value = list(r.values())
         rating_sum = rating_sum + sum(r_value)
-    average = rating_sum/len(ratings)
+    try:
+        average = rating_sum/len(ratings)
+    except:
+        average = 0
 
     return render(request, 'shops/give_rating.html', {
         'shop': shop, 'average': average

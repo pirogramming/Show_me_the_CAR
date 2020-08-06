@@ -1,7 +1,5 @@
 from django.db import models
 from core import models as core_models
-from users.models import User
-
 from users.models import *
 
 
