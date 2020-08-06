@@ -6,14 +6,15 @@
 </head>
 <body>
 
-{{ shops.name }}
+{{ shop.name }}
 <br />
 <br />
 Average Rating: {{ average }}
 <br />
 <br />
-<form action="">
+<form action="{% url 'shops:give_rating' pk=shop.pk %}">
     My Rating: <input type="number" min="1" max="5" />
+    <input type="submit" value="Give Ratings">
 </form>
 
 </body>
