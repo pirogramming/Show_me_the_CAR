@@ -15,6 +15,7 @@ class Shop(core_models.TimeStampedModel):
     address = models.CharField(max_length=80, blank=True)
     homepage = models.URLField(max_length=250, blank=True)
     phone_number = models.IntegerField(blank=True)
+    average = models.IntegerField(blank=True)
 
     def __str__(self):
         return self.name
@@ -33,9 +34,5 @@ class Rating(core_models.TimeStampedModel):
 
     user = models.ManyToManyField(User, related_name='ratings')
     shop = models.ForeignKey(Shop, related_name='shops_rating', on_delete=models.CASCADE)
-    rating = models.SmallIntegerField(default=0)
-    average = models.SmallIntegerField(default=0)
-
-    def __str__(self):
-        return str(self.user)
+    rating = models.SmallIntegerField(blank=True)
 
