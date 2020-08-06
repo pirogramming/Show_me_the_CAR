@@ -1,11 +1,11 @@
 from django.db import models
 from core import models as core_models
+from users.models import User
 
 from users.models import *
 
 
 class Shop(core_models.TimeStampedModel):
-
     """ Shop Model Definition """
 
     name = models.CharField(max_length=140, blank=True)
@@ -16,16 +16,10 @@ class Shop(core_models.TimeStampedModel):
     homepage = models.URLField(max_length=250, blank=True)
     phone_number = models.IntegerField(blank=True)
     average = models.IntegerField(blank=True)
+    like_users = models.ManyToManyField(User, related_name='like_shops')
 
     def __str__(self):
         return self.name
-
-
-class Favorite(core_models.TimeStampedModel):
-
-    """ Favorite Model Definition"""
-
-    pass
 
 
 class Rating(core_models.TimeStampedModel):
