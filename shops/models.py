@@ -1,19 +1,17 @@
 from django.db import models
 from core import models as core_models
 
+from users.models import *
+
 
 class Rating(core_models.TimeStampedModel):
 
     """ Rating Model Definition """
 
-    pass
+    star = models.PositiveSmallIntegerField()
 
-
-class Favorite(core_models.TimeStampedModel):
-
-    """ Favorite Model Definition """
-
-    pass
+    def __str__(self):
+        return self.star
 
 
 class Shop(core_models.TimeStampedModel):
@@ -30,3 +28,12 @@ class Shop(core_models.TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+
+class Favorite(core_models.TimeStampedModel):
+
+    """ Favorite Model Definition"""
+
+    user = models.ManyToManyField(User, related_name='favorites')
+    shop = models.ForeignKey(Shop)
+    total = models.IntegerField(default=0)
