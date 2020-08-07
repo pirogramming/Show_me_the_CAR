@@ -153,3 +153,6 @@ dmypy.json
 
 # Pycharm
 .idea/
+
+# Ignore Migrations
+migrations/
