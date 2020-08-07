@@ -57,3 +57,4 @@ def like(request, shop_id):
     else:
         shop.like_users.add(user)
     return redirect('shops:shop_list')
+
