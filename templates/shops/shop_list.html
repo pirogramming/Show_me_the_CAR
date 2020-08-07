@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <div>현재 사용자: {{ user.username }}</div>
+    <form action="" method="GET">
+        <!-- 엔터로 검색어 입력 받음 -->
+        <input type="text" name="q" placeholder="search">
+    </form>
     {% for shop in shops %}
         <div>
             <a href="{% url 'shops:give_rating' shop.id %}">{{ shop.name }}</a>

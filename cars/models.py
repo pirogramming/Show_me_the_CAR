@@ -21,5 +21,8 @@ class Car(core_models.TimeStampedModel):
     color = models.CharField(max_length=80)
     url = models.URLField(max_length=250)
     brand = models.ForeignKey("Brand", on_delete=models.CASCADE, related_name="cars")
-    shop = models.ManyToManyField("shops.Shop", related_name="cars", blank=True)
+    # 바로 밑에 shop 필드에서 'related_query_name' 추가함
+    shop = models.ManyToManyField("shops.Shop", related_name="cars", related_query_name="car", blank=True)
 
+    def __str__(self):
+        return self.model_name
