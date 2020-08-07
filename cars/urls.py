@@ -10,5 +10,4 @@ urlpatterns = [
 
     path('', admin.site.urls),
     path('search/', search_car, name='search_car')
-
 ]
