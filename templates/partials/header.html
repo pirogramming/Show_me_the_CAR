@@ -1,6 +1,11 @@
 <header>
   <a href="/">Show Me The Car</a>
+  
+  {% if not user.is_authenticated %}
   <ul>
-    <li><a href="#">Login</a></li>
+    <li><a href="{% url 'login:login' %}">Login</a></li>
   </ul>
+
+  {% endif %}
+    
 </header>

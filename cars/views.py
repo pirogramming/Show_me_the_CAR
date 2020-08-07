@@ -7,5 +7,11 @@ from shops.models import *
 
 
 def search_car(request):
-    pass
+    if request.method == "POST":
+        query = request.GET.get("q")
+        qs = Car.objects.all()
+        if query:
+            qs = qs.filter(Q(model_name__icontains=query)).values("shop")
+            return redirect(reverse("shops:shop_list"), kwargs={"shops": qs})
+    return render(request, "cars/search.html")
 

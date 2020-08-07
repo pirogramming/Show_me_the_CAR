@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
+{% extends 'base.html' %}
+{% block content %}
 {{ shop.name }}
 <br />
 <br />
@@ -14,9 +8,7 @@ Average Rating: {{ average }}
 <br />
 <form method="POST" action="{% url 'shops:give_rating' shop.id %}">
     {% csrf_token %}
-    My Rating: <input type="number" name="rating" min="1" max="5" />
+    My Rating: <input placeholder="1" type="number" name="rating" min="1" max="5" />
     <input type="submit" value="Give Ratings">
 </form>
-
-</body>
-</html>
+{% endblock content %}
