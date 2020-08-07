@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from shops.models import *
 from users.models import *
+from cars.models import *
 
 
 def give_rating(request, id):
@@ -41,7 +42,22 @@ def give_rating(request, id):
 
 
 def shop_list(request):
+    # 만약에 검색한 것이 있다면 query 변수로 검색어가 들어감
+    # 만약에 검색한 것이 없다면 shop 에서 모든 리스트를 받아와서 shop_list.html 템플릿으로 렌더링
+    query = request.GET.get('q', None)
     shops = Shop.objects.all()
+
+    # 만약 검색어가 입력되었다면 if 문으로 진입
+    if query:
+        pk_list = Car.objects.filter(model_name__icontains=query).values('id')
+        pk = pk_list[0].get('id')
+        shops = Shop.objects.filter(car=pk)
+
+        # 루프문 돌면서 검색된 자동차가 있는 모든 대리점을 찾아 하나의 쿼리로 묶은 뒤 shops 반환
+        for i in range(1, len(pk_list)):
+            pk = pk_list[i].get('id')
+            shops = (shops | Shop.objects.filter(car=pk))
+
     ctx = {
         'shops': shops
     }

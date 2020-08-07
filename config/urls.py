@@ -28,7 +28,10 @@ urlpatterns = [
     # login
     path('', login.views.home, name='home'),
     path('accounts/', include('allauth.urls')),
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
+
+    # search
+    path('', include('cars.urls')),
 ]
 
 if settings.DEBUG:
