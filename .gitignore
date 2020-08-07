@@ -155,4 +155,5 @@ dmypy.json
 .idea/
 
 # Ignore Migrations
-migrations/
+**/migrations/
+
