@@ -157,3 +157,6 @@ dmypy.json
 # Ignore Migrations
 migrations/
 
+# Mac OS
+.DS_Store
+
