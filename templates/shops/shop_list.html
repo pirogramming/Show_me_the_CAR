@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
+
+{% block page_name %}
+    Detail
+{% endblock page_name %}
+
 {% block content %}
+
 <div>현재 사용자: {{ user.username }}</div>
     <form action="" method="GET">
         <!-- 엔터로 검색어 입력 받음 -->
