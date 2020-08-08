@@ -4,7 +4,7 @@ from shops import models as shops_models
 
 
 def car_list(request):
-    cars = cars_models.Car.objects.all()[0:10]
+    cars = cars_models.Car.objects.all()[:10]
     context = {
         "cars": cars,
     }

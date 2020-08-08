@@ -42,6 +42,7 @@ def shop_detail(request, id):
 def shop_list(request):
     # 만약에 검색한 것이 있다면 query 변수로 검색어가 들어감
     # 만약에 검색한 것이 없다면 shop 에서 모든 리스트를 받아와서 shop_list.html 템플릿으로 렌더링
+    print(test)
     query = request.GET.get("q", None)
     shops = shops_models.Shop.objects.all()
 
@@ -65,6 +66,8 @@ def shop_list(request):
 def shop_like(request, shop_id):
     shop = get_object_or_404(shops_models.Shop, id=shop_id)
     user = request.user
+    query = request.GET.get("q", None)
+    print(query)
     # 좋아요 기능, user가heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다
     if user in shop.like_users.all():
         shop.like_users.remove(user)
