@@ -1,20 +1,20 @@
-{% extends 'base.html' %}
-{% block page_name %}
-    Detail
-{% endblock page_name %}
-
-{% block content %}
-
-{{ shop.name }}
+{% extends 'base.html' %} {% block page_name %} Detail {% endblock page_name %}
+{% block content %} {{ shop.name }}
 <br />
 <br />
 Average Rating: {{ average }}
 <br />
 <br />
 <form method="POST" action="{% url 'shops:give_rating' shop.id %}">
-    {% csrf_token %}
-    My Rating: <input type="number" name="rating" min="1" max="5" />
-    <input type="submit" value="Give Ratings">
+  {% csrf_token %} My Rating:
+  <input type="number" name="rating" min="1" max="5" />
+  <input type="submit" value="Give Ratings" />
 </form>
+<span>보유중인 차량:</span>
+<ul>
+  {% for car in shop.cars.all %}
+  <li><a href="{% url 'shops:shop_list'%}?q={{car}}">{{car}}</a></li>
+  {% endfor %}
+</ul>
 
 {% endblock content %}
