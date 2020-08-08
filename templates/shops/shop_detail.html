@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block page_name %}
+    Detail
+{% endblock page_name %}
+
+{% block content %}
 
 {{ shop.name }}
 <br />
@@ -18,5 +17,4 @@ Average Rating: {{ average }}
     <input type="submit" value="Give Ratings">
 </form>
 
-</body>
-</html>
+{% endblock content %}
