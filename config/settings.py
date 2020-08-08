@@ -146,3 +146,6 @@ LOGIN_REDIRECT_URL = '/'
 # users/models.py avatar
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
+
+# for maps in shops/
+# NAVER_CLIENT_ID = '1tf8ne5opi'
