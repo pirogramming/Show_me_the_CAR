@@ -19,15 +19,15 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path("", include("core.urls")),
     path("admin/", admin.site.urls),
     # shops
-    path("", include("shops.urls")),
+    path("shops/", include("shops.urls")),
     # login
     path("login/", include("login.urls", namespace="home")),
     path("accounts/", include("allauth.urls")),
     path("users/", include("users.urls")),
     # search
-    path("", include("cars.urls")),
 ]
 
 if settings.DEBUG:

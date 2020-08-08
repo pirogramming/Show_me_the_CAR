@@ -1,9 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.views.generic import ListView
+from . import forms
 
 from shops.models import *
 from users.models import *
 from cars.models import *
+
+
+def home(request):
+    return render(request, "base.html")
 
 
 def give_rating(request, id):
@@ -33,10 +39,27 @@ def give_rating(request, id):
     except:
         average = 0
 
-    return render(request, "shops/shop_detail.html", {"shop": shop, "average": average})
+    return render(request, "shops/detail.html", {"shop": shop, "average": average})
 
 
-def shop_list(request):
+# class SearchView(ListView):
+
+#     """ SearchView Model """
+
+#     model = Shop
+#     paginate_by = 10
+#     paginate_orphans = 5
+#     ordering = "created"
+#     context_object_name = "shops"
+
+
+def search(request):
+    form = forms.SearchForm()
+
+    return render(request, "shops/search.html", {"form": form})
+
+
+def shop_list_1(request):
     # 만약에 검색한 것이 있다면 query 변수로 검색어가 들어감
     # 만약에 검색한 것이 없다면 shop 에서 모든 리스트를 받아와서 shop_list.html 템플릿으로 렌더링
     query = request.GET.get("q", None)

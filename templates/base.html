@@ -8,6 +8,12 @@
 <body>
 
    {% include "partials/header.html" %} 
+   {% block search %}
+      <form action="{% url 'shops:search'%}" method="GET">
+        <!-- 엔터로 검색어 입력 받음 -->
+         <input type="text" name="q" placeholder="search">
+      </form>
+   {% endblock search %}
    {% block content %}
    {% endblock content %}
    {% include "partials/footer.html" %}
