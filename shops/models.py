@@ -6,8 +6,8 @@ from users.models import *
 class Shop(core_models.TimeStampedModel):
     """ Shop Model Definition """
 
-    name = models.CharField(max_length=140,)
-    description = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=140)
+    description = models.TextField(null=True)
     region = models.CharField(max_length=80, blank=True, null=True)
     city = models.CharField(max_length=80, blank=True, null=True)
     address = models.CharField(max_length=80, blank=True, null=True)
@@ -17,7 +17,7 @@ class Shop(core_models.TimeStampedModel):
     like_users = models.ManyToManyField(User, related_name="like_shops", blank=True)
 
     def __str__(self):
-        return self.name
+        return self.city
 
 
 class Rating(core_models.TimeStampedModel):

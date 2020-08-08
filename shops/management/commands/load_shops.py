@@ -13,7 +13,13 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         path = kwargs["path"]
         with open(path, "rt") as f:
-            reader = csv.reader(f, dialect="excel")
-            for index, row in enumerate(reader):
-                shop = shop_models.Shop.objects.create(name=row[0], id=index + 1)
+            reader = csv.reader(f, dialect={"encoding": "utf-8-sig"})
+            for row in reader:
+                shop = shop_models.Shop.objects.create(
+                    name=row[0],
+                    phone_number=row[1],
+                    address=row[2],
+                    city=row[3],
+                    region=row[4],
+                )
                 shop.save()
