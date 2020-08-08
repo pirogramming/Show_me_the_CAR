@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block page_name %}
+Car Detail
+{% endblock page_name %}
+{% block content %}
+<h3>{{car}}</h3>
+<a href="{% url 'shops:shop_list' %}?q={{car.pk}}">이 차량으로 검색</a>
+{% endblock content %}

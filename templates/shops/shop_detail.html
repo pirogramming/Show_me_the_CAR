@@ -5,7 +5,7 @@
 Average Rating: {{ average }}
 <br />
 <br />
-<form method="POST" action="{% url 'shops:give_rating' shop.id %}">
+<form method="POST" action="{% url 'shops:shop_detail' shop.id %}">
   {% csrf_token %} My Rating:
   <input type="number" name="rating" min="1" max="5" />
   <input type="submit" value="Give Ratings" />

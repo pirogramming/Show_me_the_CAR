@@ -1,11 +1,21 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Q
-from django.urls import reverse
-
-from cars.models import *
-from shops.models import *
+from django.shortcuts import render
+from cars import models as cars_models
+from shops import models as shops_models
 
 
-def search_car(request):
-    pass
+def car_list(request):
+    cars = cars_models.Car.objects.all()[0:10]
+    context = {
+        "cars": cars,
+    }
+    return render(request, "cars/car_list.html", context=context)
 
+
+def car_detail(request, pk):
+    car = cars_models.Car.objects.get(pk=pk)
+    # shops = shops_models.Shop.objects.get(id=1)
+    # print(dir(shops))
+    context = {
+        "car": car,
+    }
+    return render(request, "cars/car_detail.html", context=context)

@@ -8,18 +8,19 @@
 
 <div>현재 사용자: {{ user.username }}</div>
     <form action="" method="GET">
-        <!-- 엔터로 검색어 입력 받음 -->
+        <!-- 버튼으로 검색어 입력 받음 -->
         <input type="text" name="q" placeholder="search">
+        <button>검색</button>
     </form>
     {% for shop in shops %}
         <div>
-            <a href="{% url 'shops:give_rating' shop.id %}">{{ shop.name }}</a>
+            <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
             <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
-            <a href="{% url 'shops:like' shop.id %}">
+            <a href="{% url 'shops:shop_like' shop.id %}">
               {% if user in shop.like_users.all %}
-                <a href="{% url 'shops:like' shop.id %}"><i class="fas fa-heart"></i></a>
+                <a href="{% url 'shops:shop_like' shop.id %}"><i class="fas fa-heart"></i></a>
               {% else %}
-                <a href="{% url 'shops:like' shop.id %}"><i class="far fa-heart"></i></a>
+                <a href="{% url 'shops:shop_like' shop.id %}"><i class="far fa-heart"></i></a>
               {% endif %}
             </a>
         </div>

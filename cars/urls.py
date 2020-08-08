@@ -1,13 +1,11 @@
-from django.contrib import admin
 from django.urls import path
 
-from .views import *
+from . import views as car_views
 
 
-app_name = 'cars'
+app_name = "cars"
 
 urlpatterns = [
-
-    path('', admin.site.urls),
-    path('search/', search_car, name='search_car')
+    path("", car_views.car_list, name="car_list"),
+    path("<int:pk>/detail/", car_views.car_detail, name="car_detail"),
 ]
