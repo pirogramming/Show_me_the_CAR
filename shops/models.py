@@ -17,7 +17,7 @@ class Shop(core_models.TimeStampedModel):
     like_users = models.ManyToManyField(User, related_name="like_shops", blank=True)
 
     def __str__(self):
-        return self.city
+        return self.name
 
 
 class Rating(core_models.TimeStampedModel):
