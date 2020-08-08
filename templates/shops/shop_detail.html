@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block page_name %}Rating
+{% endblock page_name %}
+
+{% block content %}
 
 {{ shop.name }}
 <br />
@@ -17,6 +15,4 @@ Average Rating: {{ average }}
     My Rating: <input type="number" name="rating" min="1" max="5" />
     <input type="submit" value="Give Ratings">
 </form>
-
-</body>
-</html>
+{% endblock content %}
