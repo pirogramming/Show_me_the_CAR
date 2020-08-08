@@ -12,8 +12,7 @@ class Shop(core_models.TimeStampedModel):
     city = models.CharField(max_length=80, blank=True)
     address = models.CharField(max_length=80, blank=True)
     homepage = models.URLField(max_length=250, blank=True)
-    # phone_number 모델 추후 수정 필요
-    phone_number = models.IntegerField(blank=True)
+    phone_number = models.IntegerField(blank=True) # phone_number 모델 추후 수정 필요
     average = models.IntegerField(blank=True)
     like_users = models.ManyToManyField(User, related_name='like_shops')
 
@@ -25,7 +24,9 @@ class Rating(core_models.TimeStampedModel):
 
     """ Rating Model Definition """
 
-    user = models.ManyToManyField(User, related_name='ratings')
-    shop = models.ForeignKey(Shop, related_name='shops_rating', on_delete=models.CASCADE)
+    user = models.ManyToManyField(User, related_name="ratings")
+    shop = models.ForeignKey(
+        Shop, related_name="shops_rating", on_delete=models.CASCADE
+    )
     rating = models.SmallIntegerField(blank=True)
 

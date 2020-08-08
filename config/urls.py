@@ -17,18 +17,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-import login.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
+    path("admin/", admin.site.urls),
     # shops
-    path('', include('shops.urls')),
-
+    path("", include("shops.urls")),
     # login
-    path('', login.views.home, name='home'),
-    path('accounts/', include('allauth.urls')),
-    path('users/', include('users.urls'))
+    path("login/", include("login.urls", namespace="home")),
+    path("accounts/", include("allauth.urls")),
+    path("users/", include("users.urls")),
+    # search
+    path("", include("cars.urls")),
 ]
 
 if settings.DEBUG:

@@ -8,7 +8,7 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
+# db.sqlite3
 db.sqlite3-journal
 media
 
@@ -153,3 +153,10 @@ dmypy.json
 
 # Pycharm
 .idea/
+
+# Ignore Migrations
+migrations/
+
+# Mac OS
+.DS_Store
+

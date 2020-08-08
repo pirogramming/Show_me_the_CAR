@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
+{% block page_name %}
+    Detail
+{% endblock page_name %}
+
+
 {% block content %}
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1tf8ne5opi"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1tf8ne5opi&submodules=geocoder"></script>
+
+>>>>>>> 4635b968149f54bd986c938a7768c03f6c71ff42
 <div>현재 사용자: {{ user.username }}</div>
+    <form action="" method="GET">
+        <!-- 엔터로 검색어 입력 받음 -->
+        <input type="text" name="q" placeholder="search">
+    </form>
     {% for shop in shops %}
         <div>
             <a href="{% url 'shops:give_rating' shop.id %}">{{ shop.name }}</a>
@@ -32,6 +41,9 @@
 
     <!-- 네이버 지도 api -->
     <div id="map" style="width:50%;height:400px;"></div>
+
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1tf8ne5opi"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1tf8ne5opi&submodules=geocoder"></script>
 
     <script>
         var map = new naver.maps.Map('map', {
