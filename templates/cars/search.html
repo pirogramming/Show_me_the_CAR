@@ -9,10 +9,9 @@
 <h1>WELCOME TO SHOW ME THE CAR</h1>
 <br />
 <br />
-<form action="{% url 'cars:search_car' %}" method="POST">
+<form action="{% url 'cars:main_search' %}" method="GET">
     {% csrf_token %}
     <input type="text" name='q' placeholder="SEARCH">
-    <input type="submit" value="Search">
 </form>
 
 </body>

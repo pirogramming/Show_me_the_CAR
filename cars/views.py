@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+
 from cars import models as cars_models
 from shops import models as shops_models
+from shops import urls
 
 
 def car_list(request):
@@ -19,3 +22,10 @@ def car_detail(request, pk):
         "car": car,
     }
     return render(request, "cars/car_detail.html", context=context)
+
+
+def main_search(request):
+    query = request.GET.get('q', None)
+    if query:
+        return redirect(reverse('shops:shop_list') + '?q=' + query)
+    return render(request, 'cars/search.html')
