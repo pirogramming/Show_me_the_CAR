@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.http import Http404
 
 from shops import models as shops_models
@@ -11,38 +11,46 @@ def home(request):
     return render(request, "base.html")
 
 
-def shop_detail(request, id):
-    # POST 방식
-    # 나의 평점을 POST 방식으로 추가하면 rating query에 평점이 등록됨
-    if request.method == "POST":
-        my_rating = request.POST.get("rating", None)
-        if my_rating:
-            shop = shops_models.Shop.objects.get(id=id)
-            shops_models.Rating.objects.create(shop=shop, rating=my_rating)
+class ShopDetail(DetailView):
 
-        return redirect(reverse("shops:shop_detail", kwargs={"id": id}))
+    """ Shop Detail View """
 
-    # GET 방식
-    try:
-        shop = get_object_or_404(shops_models.Shop, id=id)
+    model = shops_models.Shop
+    pk_url_kwarg = "id"
 
-        # 특정 샵의 Pk로 먼저 필터링 후 그 샵의 rating field 값만 불러와서 리스트 생성
-        ratings = shops_models.Rating.objects.filter(shop=id).values("rating")
 
-        # 생성한 ratings 딕셔너리에서 value 값만 추출해서 평균 구하는 루프
-        rating_sum = 0
-        for r in ratings:
-            r_value = list(r.values())
-            rating_sum = rating_sum + sum(r_value)
-        try:
-            average = rating_sum / len(ratings)
-        except:
-            average = 0
-        return render(
-            request, "shops/shop_detail.html", {"shop": shop, "average": average}
-        )
-    except shops_models.Shop.DoesNotExist:
-        raise Http404()
+# def shop_detail(request, id):
+#     # POST 방식
+#     # 나의 평점을 POST 방식으로 추가하면 rating query에 평점이 등록됨
+#     if request.method == "POST":
+#         my_rating = request.POST.get("rating", None)
+#         if my_rating:
+#             shop = shops_models.Shop.objects.get(id=id)
+#             shops_models.Rating.objects.create(shop=shop, rating=my_rating)
+
+#         return redirect(reverse("shops:shop_detail", kwargs={"id": id}))
+
+#     # GET 방식
+#     try:
+#         shop = get_object_or_404(shops_models.Shop, id=id)
+
+#         # 특정 샵의 Pk로 먼저 필터링 후 그 샵의 rating field 값만 불러와서 리스트 생성
+#         ratings = shops_models.Rating.objects.filter(shop=id).values("rating")
+
+#         # 생성한 ratings 딕셔너리에서 value 값만 추출해서 평균 구하는 루프
+#         rating_sum = 0
+#         for r in ratings:
+#             r_value = list(r.values())
+#             rating_sum = rating_sum + sum(r_value)
+#         try:
+#             average = rating_sum / len(ratings)
+#         except:
+#             average = 0
+#         return render(
+#             request, "shops/shop_detail.html", {"shop": shop, "average": average}
+#         )
+#     except shops_models.Shop.DoesNotExist:
+#         raise Http404()
 
 
 class ShopListView(ListView):
