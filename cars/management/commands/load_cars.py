@@ -17,13 +17,17 @@ class Command(BaseCommand):
             reader = csv.reader(f, dialect="excel")
             for row in reader:
                 try:
-                    car = car_models.Car.objects.get(model_name=row[5])
+                    car = car_models.Car.objects.get(model_name=row[5], color=row[6])
                 except car_models.Car.DoesNotExist:
                     brand = car_models.Brand.objects.get(name=row[7])
                     car = car_models.Car.objects.create(
                         model_name=row[5], color=row[6], brand=brand
                     )
                     car.save()
-                shop = shop_models.Shop.objects.get(name=row[0])
+                try:
+                    shop = shop_models.Shop.objects.get(name=row[0])
+                except shop_models.Shop.DoesNotExist:
+                    car.delete()
+                    continue
                 car.shop.add(shop)
 

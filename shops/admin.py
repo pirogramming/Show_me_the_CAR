@@ -9,10 +9,14 @@ class ShopAdmin(admin.ModelAdmin):
 
     list_display = [
         "name",
+        "get_cars",
     ]
     list_display_links = [
         "name",
     ]
+
+    def get_cars(self, obj):
+        return "\n".join([car.cars for car in self.car.all()])
 
 
 @admin.register(models.Rating)
