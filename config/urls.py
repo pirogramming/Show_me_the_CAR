@@ -18,19 +18,21 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+app_name = "core"
+
 urlpatterns = [
     # core
-    path("", include("core.urls")),
+    path("", include("core.urls", namespace="core")),
     # shops
-    path("shops/", include("shops.urls")),
+    path("shops/", include("shops.urls", namespace="shops")),
     # login
-    path("login/", include("login.urls", namespace="home")),
+    path("login/", include("login.urls", namespace="login")),
     # accounts
     path("accounts/", include("allauth.urls")),
     # users
-    path("users/", include("users.urls")),
+    path("users/", include("users.urls", namespace="users")),
     # search
-    path("cars/", include("cars.urls")),
+    path("cars/", include("cars.urls", namespace="cars")),
     # admin
     path("admin/", admin.site.urls),
 ]

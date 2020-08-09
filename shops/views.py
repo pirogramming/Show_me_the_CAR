@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.views.generic import ListView
 
 from shops import models as shops_models
 from cars import models as cars_models
@@ -39,28 +40,39 @@ def shop_detail(request, id):
     return render(request, "shops/shop_detail.html", {"shop": shop, "average": average})
 
 
-def shop_list(request):
-    # 만약에 검색한 것이 있다면 query 변수로 검색어가 들어감
-    # 만약에 검색한 것이 없다면 shop 에서 모든 리스트를 받아와서 shop_list.html 템플릿으로 렌더링
-    print(test)
-    query = request.GET.get("q", None)
-    shops = shops_models.Shop.objects.all()
+class ShopListView(ListView):
 
-    # 만약 검색어가 입력되었다면 if 문으로 진입
-    if query:
-        pk_list = cars_models.Car.objects.filter(model_name__icontains=query).values(
-            "id"
-        )
-        pk = pk_list[0].get("id")
-        shops = shops_models.Shop.objects.filter(car=pk)
+    """ ShopListView definition """
 
-        # 루프문 돌면서 검색된 자동차가 있는 모든 대리점을 찾아 하나의 쿼리로 묶은 뒤 shops 반환
-        for i in range(1, len(pk_list)):
-            pk = pk_list[i].get("id")
-            shops = shops | shops_models.Shop.objects.filter(car=pk)
+    model = shops_models.Shop
+    paginate_by = 10
+    paginate_orhpans = 5
+    ordering = "created"
+    context_object_name = "shops"
 
-    ctx = {"shops": shops}
-    return render(request, "shops/shop_list.html", ctx)
+
+# def shop_list(request):
+#     # 만약에 검색한 것이 있다면 query 변수로 검색어가 들어감
+#     # 만약에 검색한 것이 없다면 shop 에서 모든 리스트를 받아와서 shop_list.html 템플릿으로 렌더링
+#     # print(test)
+#     query = request.GET.get("q", None)
+#     shops = shops_models.Shop.objects.all()
+
+#     # 만약 검색어가 입력되었다면 if 문으로 진입
+#     if query:
+#         pk_list = cars_models.Car.objects.filter(model_name__icontains=query).values(
+#             "id"
+#         )
+#         pk = pk_list[0].get("id")
+#         shops = shops_models.Shop.objects.filter(car=pk)
+
+#         # 루프문 돌면서 검색된 자동차가 있는 모든 대리점을 찾아 하나의 쿼리로 묶은 뒤 shops 반환
+#         for i in range(1, len(pk_list)):
+#             pk = pk_list[i].get("id")
+#             shops = shops | shops_models.Shop.objects.filter(car=pk)
+
+#     ctx = {"shops": shops}
+#     return render(request, "shops/shop_list.html", ctx)
 
 
 def shop_like(request, shop_id):
