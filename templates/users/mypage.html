@@ -1,3 +1,16 @@
-{% block body %}
+{% block content %}
     <h1>Profile</h1>
+    {{ user.username }}
+    {% for like_shop in like_shops %}
+        <div>
+            {{ like_shop.name }}
+        <form action="{% url 'users:rate_shop' %}" method="post" enctype="multipart/form-data">
+{#        {% csrf_token %}#}
+           <input type="number" name="{{ like_shop.id }}" />
+            <input type="submit" value="별점" />
+            {{ like_shop.rate_user.name }}
+        </form>
+
+        </div>
+    {% endfor %}
 {% endblock %}
