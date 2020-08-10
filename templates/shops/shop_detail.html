@@ -1,20 +1,23 @@
-{% extends 'base.html' %} {% block page_name %} Detail {% endblock page_name %}
+{% extends 'base.html' %} {% block page_name %} {{shop.name}} {% endblock page_name %}
 {% block content %} {{ shop.name }}
-<br />
-<br />
-Average Rating: {{ average }}
-<br />
-<br />
-<form method="POST" action="{% url 'shops:shop_detail' shop.id %}">
-  {% csrf_token %} My Rating:
-  <input type="number" name="rating" min="1" max="5" />
-  <input type="submit" value="Give Ratings" />
-</form>
-<span>보유중인 차량:</span>
-<ul>
+  <br />
+  <br />
+  Average Rating: {{ average }}
+  <br />
+  <br />
+  <form method="POST" action="{% url 'shops:shop_detail' shop.id %}">
+    {% csrf_token %} My Rating:
+    <input type="number" name="rating" min="1" max="5" />
+    <input type="submit" value="Give Ratings" />
+  </form>
+  <span>보유중인 차량:</span>
+  <ul>
   {% for car in shop.cars.all %}
-  <li><a href="{% url 'shops:shop_list'%}?q={{car}}">{{car}}</a></li>
+    <li><a href="{% url 'shops:shop_search'%}?car_model={{car.model_name}}">{{car.model_name}}</a></li>
+    {% for shop in car.shop.all %}
+    {{shop.name}}
+    {% endfor %}
   {% endfor %}
-</ul>
+  </ul>
 
 {% endblock content %}

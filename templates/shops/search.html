@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block page_name %}
+    Search
+{% endblock page_name %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+    <h2>Search!</h2>
+
+    <form action="{% url 'shops:shop_search'%}" method="get">
+        {{form.as_p}}
+        <button>검색!</button>
+    </form>
+    
+    {% if shops %}<h4>검색어: {{query}}</h4>
+        
+        {% for shop in shops %}
+            <div>
+                <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
+                <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
+                {% if user in shop.like_users.all %}
+                    <a href="{% url 'shops:shop_like' shop.id %}"><i class="fas fa-heart"></i></a>
+                {% else %}
+                    <a href="{% url 'shops:shop_like' shop.id %}"><i class="far fa-heart"></i></a>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <h5>
+            {% if shops.has_previous %}
+                <a href="{% url 'shops:shop_search'%}?car_model={{query}}&/?page={{shops.previous_page_number}}">이전</a>
+            {% endif %}
+            
+            Page {{shops.number}} of {{shops.paginator.num_pages}}
+
+            {% if shops.has_next %}
+                <a href="{% url 'shops:shop_search'%}?car_model={{query}}&/?page={{shops.next_page_number}}">다음</a>
+                {% comment %} <a href="?page={{shops.next_page_number}}">다음</a> {% endcomment %}
+            {% endif %}
+        </h5>
+    {% endif %}
+
+{% endblock content %}
