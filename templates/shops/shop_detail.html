@@ -13,7 +13,7 @@
   <span>보유중인 차량:</span>
   <ul>
   {% for car in shop.cars.all %}
-    <li><a href="{% url 'shops:shop_list'%}?q={{car.model_name}}">{{car.model_name}}</a></li>
+    <li><a href="{% url 'shops:shop_search'%}?car_model={{car.model_name}}">{{car.model_name}}</a></li>
     {% for shop in car.shop.all %}
     {{shop.name}}
     {% endfor %}

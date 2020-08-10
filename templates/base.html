@@ -7,10 +7,16 @@
 </head>
 <body>
    <header>
-      {% include "partials/header.html" %} 
+      {% include "partials/nav.html" %} 
+      {% block search-bar %}
+        <form method="get" action="{% url 'shops:shop_search' %}">
+            <input name="car_model" placeholder="차 모델을 검색하세요" />
+            <button>검색</button>
+        </form>
+      {% endblock search-bar %}
    </header>
-   {% block content %}
-   {% endblock content %}
+
+   {% block content %}{% endblock content %}
 
    {% include "partials/footer.html" %}
 
