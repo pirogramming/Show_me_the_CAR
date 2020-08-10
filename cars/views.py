@@ -26,9 +26,3 @@ def car_detail(request, pk):
     except cars_models.Car.DoesNotExist:
         raise Http404()
 
-
-def main_search(request):
-    query = request.GET.get('q', None)
-    if query:
-        return redirect(reverse('shops:shop_list') + '?q=' + query)
-    return render(request, 'cars/search.html')
