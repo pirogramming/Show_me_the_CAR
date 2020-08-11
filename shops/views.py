@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from django.core.paginator import Paginator
 from django.urls import reverse
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from . import forms
 
 from shops import models as shops_models
@@ -101,14 +101,19 @@ class ShopListView(ListView):
     context_object_name = "shops"
 
 
-def shop_like(request, shop_id):
-    shop = get_object_or_404(shops_models.Shop, id=shop_id)
-    user = request.user
-    query = request.GET.get("q", None)
-    print(query)
-    # 좋아요 기능, user가heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다
-    if user in shop.like_users.all():
-        shop.like_users.remove(user)
-    else:
-        shop.like_users.add(user)
-    return redirect("shops:shop_list")
+def shop_like_ajax(request, pk):
+
+    # shop = get_object_or_404(shops_models.Shop, id=shop_id)
+    # user = request.user
+    # query = request.GET.get("q", None)
+    # print(query)
+    # # 좋아요 기능, user가heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다
+    # if user in shop.like_users.all():
+    #     shop.like_users.remove(user)
+    # else:
+    #     shop.like_users.add(user)
+    # return redirect("shops:shop_list")
+
+    context = ""
+    return render(request, "")
+    # return JsonResponse(context)
