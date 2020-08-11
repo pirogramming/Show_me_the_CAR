@@ -20,6 +20,7 @@ class ShopSearchView(View):
     """ Shop Search View """
 
     def get(self, request):
+        user = request.user
         car_model = request.GET.get("car_model")
         query = car_model
         if car_model:
@@ -51,6 +52,7 @@ class ShopSearchView(View):
             shops = shops_models.Shop.objects.all().order_by("-created")
 
         context = {
+            "user": user,
             "form": form,
             "shops": shops,
             "query": query,

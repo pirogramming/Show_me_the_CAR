@@ -14,9 +14,9 @@
 
 {% block content %}
 <div>현재 사용자: {{ user.username }}</div>
-    <form action="" method="GET">
+    <form action="{% url 'shops:shop_search'%}" method="GET">
         <!-- 버튼으로 검색어 입력 받음 -->
-        <input type="text" name="q" placeholder="search">
+        <input type="text" name="car_model" placeholder="search">
         <button>검색</button>
     </form>
     {% for shop in shops %}
