@@ -132,6 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 
 AUTH_USER_MODEL = "users.User"
 
@@ -146,6 +147,3 @@ LOGIN_REDIRECT_URL = '/'
 # users/models.py avatar
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
-
-# for maps in shops/
-# NAVER_CLIENT_ID = '1tf8ne5opi'
