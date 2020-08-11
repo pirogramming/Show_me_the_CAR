@@ -8,23 +8,8 @@
 {% block search-bar %}
 {% endblock search-bar %}
 
-{% block javascript %}
-<script>
-    const clickLike = (pk, status) => {
-        console.log(pk);
-        console.log(status);
-        $.ajax({
-            type: "post",
-            url: "{% url 'shops:shop_like_ajax' %}",
-            data: {"pk": pk, "status": status, "csrfmiddlewaretoken": "{{ csrf_token }}"},
-            success: () => {
-                console.log("success");
-                console.log($(".like-button"));
 
-            };
-        });
-    };
-</script>
+{% block javascript %}
 {% endblock javascript %}
 
 {% block content %}
@@ -38,15 +23,19 @@
         <div>
             <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
 
-            <input type="submit" onClick="clickLike({{shop.pk}}, 'like')" value="liked" class="like-button">
             <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
 
-              {% comment %} {% if user in shop.like_users.all %} {% endcomment %}
+            {% if user in shop.like_users.all %}
+                <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="liked" class="" id=like-button{{shop.pk}}>
+                <i class="fas fa-heart"></i>
+            {% else %}
+                <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="not_liked" class="" id=like-button{{shop.pk}}>
+                <i class="far fa-heart"></i>
+            {% endif %}
+                    
+            </button>
 
-                {% comment %} <a href="{% url 'shops:shop_like' shop.id %}"><i class="fas fa-heart"></i></a> {% endcomment %}
-              {% comment %} {% else %} {% endcomment %}
-                {% comment %} <a href="{% url 'shops:shop_like' shop.id %}"><i class="far fa-heart"></i></a> {% endcomment %}
-              {% comment %} {% endif %} {% endcomment %}
+
         </div>
     {% endfor %}
 
