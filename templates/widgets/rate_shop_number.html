@@ -1,15 +1,12 @@
 {% load static %}
 {% include "django/forms/widgets/input.html" %}
 
-<link rel="stylesheet" href="{% static 'widgets/rateit.js/scripts/rateit.css' %}"/>
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="{% static 'widgets/rateit.js/scripts/jquery.rateit.min.js' %}"></script>
 
-<div id="rateit_{{ widget.attrs.id }}" class="rateit"></div>
+ <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src="{% static 'widgets/rateit/scripts/jquery.rateit.min.js' %}" ></script>
+<div class="rateit" data-rateit-backingfld="#{{ widget.attrs.id }}"></div>
 
-<script>
-    $('#rateit_{{ widget.attrs.id }}').bind('rated', function() {
-        var value = $(this).rateit('value');
-        $('#{{ widget.attrs.id }}').val(value);
-    });
-</script>

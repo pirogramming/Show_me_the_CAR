@@ -19,12 +19,10 @@ def render_mypage(request):
 
 
 def rate_shop(request):
-
-    for shop_id, star in request.POST.items():
-        if star:
-            rating = Rating.objects.get(user_id=request.user.id, shop_id=shop_id)
-            rating.rating = star[0]
-            rating.save()
-
+    rating_value = request.POST["rating"]
+    shop_id = request.POST["shop_id"]
+    rating = Rating.objects.get(user_id=request.user.id, shop_id=shop_id)
+    rating.rating = rating_value
+    rating.save()
     url = reverse('users:mypage')
     return redirect(to=url)

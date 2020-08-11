@@ -2,20 +2,17 @@
     <h1>Profile</h1>
     {{ user.username }}
     {% for like_shop in like_shops %}
-        <div>
-            {{ like_shop.name }}{{ like_shop.pk }}
+        {{ like_shop.name }}{{ like_shop.pk }}
 
         <form action="{% url 'users:rate_shop' %}" method="post">
 {#        {% csrf_token %}#}
-{#TODO: csrf 토큰이 있으면 동작이 안된다 망할#}
-            <label for="rating">
-                <input type="number" name="{{ like_shop.pk }}" />
-            </label>
+{#            <label for="shop_id"></label>#}
+{#            <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>#}
+{#            <button type="submit">제출</button>#}
+            {{ form.as_p }}
 
-            <button type="submit">제출</button>
-                {{ like_shop.rate_user.name }}
         </form>
-
-        </div>
     {% endfor %}
+
+
 {% endblock %}
