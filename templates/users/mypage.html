@@ -5,11 +5,13 @@
         {{ like_shop.name }}{{ like_shop.pk }}
 
         <form action="{% url 'users:rate_shop' %}" method="post">
-{#        {% csrf_token %}#}
-{#            <label for="shop_id"></label>#}
-{#            <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>#}
-{#            <button type="submit">제출</button>#}
-            {{ form.as_p }}
+        {% csrf_token %}
+            <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
+            <table>
+            {{ form.as_table }}
+            </table>
+            <button type="submit">제출</button>
+
 
         </form>
     {% endfor %}

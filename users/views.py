@@ -8,6 +8,7 @@ from shops.models import Rating, Shop
 def render_mypage(request):
     user = request.user
     like_shops = user.like_shops.all()
+    print(like_shops)
     form = RatingForm()
     ctx = {
         'user': user,
