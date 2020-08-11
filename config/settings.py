@@ -38,6 +38,7 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.forms', #widgets
 
     'allauth',
     'allauth.account',
@@ -133,6 +134,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 AUTH_USER_MODEL = "users.User"
 
 AUTHENTICATION_BACKENDS = (
@@ -146,3 +151,6 @@ LOGIN_REDIRECT_URL = '/'
 # users/models.py avatar
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
+
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting' #위젯 폼 렌더링 문제, 왜 발생하는지 모르겠는데 이거 넣으면 해결됨
+

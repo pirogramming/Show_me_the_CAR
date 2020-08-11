@@ -1,6 +1,6 @@
 from django.contrib import admin
 from . import models
-
+from users.forms import RatingForm
 
 @admin.register(models.Shop)
 class ShopAdmin(admin.ModelAdmin):
@@ -17,6 +17,5 @@ class ShopAdmin(admin.ModelAdmin):
 
 @admin.register(models.Rating)
 class RatingAdmin(admin.ModelAdmin):
-
-    pass
+    form = RatingForm
 

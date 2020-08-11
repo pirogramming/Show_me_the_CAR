@@ -2,14 +2,10 @@
 {% block content %} {{ shop.name }}
 <br />
 <br />
-Average Rating: {{ average }}
+평점: {{ average }} / 5
 <br />
 <br />
-<form method="POST" action="{% url 'shops:shop_detail' shop.id %}">
-  {% csrf_token %} My Rating:
-  <input type="number" name="rating" min="1" max="5" />
-  <input type="submit" value="Give Ratings" />
-</form>
+
 <span>보유중인 차량:</span>
 <ul>
   {% for car in shop.cars.all %}
