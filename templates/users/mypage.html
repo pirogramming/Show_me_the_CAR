@@ -19,7 +19,7 @@ Mypage
                     <button class="jsRateBtn" type="submit" onClick="clickRate()">평가하기</button>
                 </form>
                 <div>내가 준 별점: {{like_shop.ratings.all|get_shop_rating:user}}</div>
-                <button onClick="clickEditRating()" class="jsEditRating">수정하기</button>
+                {% comment %} <button onClick="clickEditRating()" class="jsEditRating">수정하기</button> {% endcomment %}
             </li>
         {% endfor %}
     </ul>
