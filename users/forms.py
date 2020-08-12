@@ -4,12 +4,10 @@ from .widgets import RateShopWidget
 
 
 class RatingForm(forms.ModelForm):
-
     class Meta:
         model = Rating
-        fields = ['rating']
+        fields = ["rating"]
         widgets = {
-            'rating': RateShopWidget
+            "rating": RateShopWidget,
         }
-
 

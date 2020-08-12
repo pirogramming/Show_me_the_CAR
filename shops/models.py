@@ -35,10 +35,12 @@ class Shop(core_models.TimeStampedModel):
             sum_rating += int(rating.rating)
             number_of_ratings += 1
         try:
-            avg_rating = round(sum_rating / number_of_ratings)
+            avg_rating = round((sum_rating / number_of_ratings), 2)
         except ZeroDivisionError:
             avg_rating = 0
         return avg_rating
+
+    get_average_rating.short_description = "Avg. rating"
 
 
 class Rating(core_models.TimeStampedModel):
@@ -52,6 +54,12 @@ class Rating(core_models.TimeStampedModel):
         "shops.Shop", related_name="ratings", on_delete=models.CASCADE
     )
     rating = models.IntegerField(
-        validators=[MaxValueValidator(5), MinValueValidator(1)], blank=True, default=0,
+        validators=[MaxValueValidator(5), MinValueValidator(1)],
+        blank=True,
+        default=0,
+        verbose_name="",
     )
+
+    def __str__(self):
+        return str(self.rating)
 

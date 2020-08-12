@@ -30,3 +30,30 @@ const clickLike = (pk, url, csrf_token) => {
     },
   });
 };
+
+const clickEditRating = () => {
+  // rateit = document.querySelector(".rateit.rateit-bg");
+  // rateBtn = document.querySelector(".jsRateBtn");
+  // rateBtn.setAttribute("style", "display: inline-block;");
+  // rateit.setAttribute("style", "display: inline-block;");
+  // $.ajax({
+  //   type: "post",
+  //   url: url,
+  //   data: {
+  //     csrfmiddlewaretoken: csrf_token,
+  //   },
+  //   success: () => {
+  //     console.log("success");
+  //   },
+  //   function(request, status, error) {
+  //     alert("fail");
+  //   },
+  // });
+};
+
+const clickRate = () => {
+  // rateit = document.querySelector(".rateit.rateit-bg");
+  // rateBtn = document.querySelector(".jsEditRating");
+  // rateBtn.setAttribute("style", "display: none;");
+  // rateit.setAttribute("style", "display: none;");
+};

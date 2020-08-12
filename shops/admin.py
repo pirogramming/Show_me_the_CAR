@@ -2,6 +2,7 @@ from django.contrib import admin
 from . import models
 from users.forms import RatingForm
 
+
 @admin.register(models.Shop)
 class ShopAdmin(admin.ModelAdmin):
 
@@ -13,6 +14,7 @@ class ShopAdmin(admin.ModelAdmin):
         "city",
         "region",
         "count_cars",
+        "get_average_rating",
     ]
 
     list_filter = [
@@ -37,5 +39,14 @@ class ShopAdmin(admin.ModelAdmin):
 
 @admin.register(models.Rating)
 class RatingAdmin(admin.ModelAdmin):
+
+    """ Rating Admin Definition """
+
+    list_display = (
+        "user",
+        "shop",
+        "rating",
+    )
+
     form = RatingForm
 
