@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block page_name %}
@@ -6,23 +7,35 @@
 
 {% block search-bar %}
 {% endblock search-bar %}
-{% block content %}
 
+
+{% block javascript %}
+{% endblock javascript %}
+
+{% block content %}
 <div>현재 사용자: {{ user.username }}</div>
-    <form action="" method="GET">
+    <form action="{% url 'shops:shop_search'%}" method="GET">
         <!-- 버튼으로 검색어 입력 받음 -->
-        <input type="text" name="q" placeholder="search">
+        <input type="text" name="car_model" placeholder="search">
         <button>검색</button>
     </form>
     {% for shop in shops %}
         <div>
             <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
+
             <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
-              {% if user in shop.like_users.all %}
-                <a href="{% url 'shops:shop_like' shop.id %}"><i class="fas fa-heart"></i></a>
-              {% else %}
-                <a href="{% url 'shops:shop_like' shop.id %}"><i class="far fa-heart"></i></a>
-              {% endif %}
+
+            {% if user in shop.like_users.all %}
+                <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="liked" class="" id=like-button{{shop.pk}}>
+                <i class="fas fa-heart"></i>
+            {% else %}
+                <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="not_liked" class="" id=like-button{{shop.pk}}>
+                <i class="far fa-heart"></i>
+            {% endif %}
+                    
+            </button>
+
+
         </div>
     {% endfor %}
 

@@ -5,10 +5,15 @@
     Login
 {% endblock page_name %}
 
+{% block login_block %}
+{% endblock login_block %}
+{% block search-bar %}
+{% endblock search-bar %}
+
 {% block content %}
     <h1>Login</h1>
-    <a href = "/accounts/signup">회원가입</a><br>
-    <a href = "/accounts/login">로그인</a><br>
+    {% comment %} <a href = "/accounts/signup">회원가입</a><br> {% endcomment %}
+    {% comment %} <a href = "/accounts/login">로그인</a><br> {% endcomment %}
 
     {% if user.is_authenticated %}
         <a href = "/accounts/logout">로그아웃</a>

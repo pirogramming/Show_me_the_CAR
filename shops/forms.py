@@ -10,6 +10,6 @@ class SearchForm(forms.Form):
     car_model = forms.CharField(label="차 모델")
 
 
-class RatingForm(forms.Form):
-    rating = forms.IntegerField(required=False)
+# class RatingForm(forms.Form):
+#     rating = forms.IntegerField(required=False)
 

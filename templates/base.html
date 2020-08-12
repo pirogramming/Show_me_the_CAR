@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
       {% include "partials/nav.html" %} 
       {% block search-bar %}
         <form method="get" action="{% url 'shops:shop_search' %}">
-            <input name="car_model" placeholder="차 모델을 검색하세요" />
+            <input name="car_model"  placeholder="차 모델을 검색하세요" />
             <button>검색</button>
         </form>
       {% endblock search-bar %}
@@ -24,5 +25,20 @@
 
 {# i tag 불러오는 링크 #}
    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
+   <script
+   src="https://code.jquery.com/jquery-3.4.1.min.js"
+   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+   crossorigin="anonymous"></script>
+   <script src="{% static 'widgets/rateit/scripts/jquery.rateit.min.js' %}" ></script>
+
+{# Load javascript #}
+
+   <script src="{% static 'js/main.js' %}"></script>
+   {% comment %} <script src="{% static 'widgets' %}"></script> {% endcomment %}
+   {% block javascript %}
+   {% endblock javascript %}
 </body>
 </html>

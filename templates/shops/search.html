@@ -20,12 +20,20 @@
         {% for shop in shops %}
             <div>
                 <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
+
                 <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
+
                 {% if user in shop.like_users.all %}
-                    <a href="{% url 'shops:shop_like' shop.id %}"><i class="fas fa-heart"></i></a>
+                    <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="liked" class="" id=like-button{{shop.pk}}>
+                    <i class="fas fa-heart"></i>
                 {% else %}
-                    <a href="{% url 'shops:shop_like' shop.id %}"><i class="far fa-heart"></i></a>
+                    <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="not_liked" class="" id=like-button{{shop.pk}}>
+                    <i class="far fa-heart"></i>
                 {% endif %}
+                        
+                </button>
+
+
             </div>
         {% endfor %}
 
