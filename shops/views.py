@@ -41,7 +41,7 @@ class ShopSearchView(View):
                     "-created"
                 )
 
-                paginator = Paginator(qs, 10, orphans=5)
+                paginator = Paginator(qs, 30, orphans=5)
 
                 page = request.GET.get("/?page", 1)
 
@@ -92,7 +92,7 @@ class ShopListView(ListView):
     """ ShopListView definition """
 
     model = shops_models.Shop
-    paginate_by = 10
+    paginate_by = 30
     paginate_orphans = 5
     ordering = "created"
     context_object_name = "shops"

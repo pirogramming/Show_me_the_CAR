@@ -8,7 +8,7 @@ class SearchForm(forms.Form):
 
     # city = forms.CharField(initial="Anywhere", required=False, label="도시")
     car_model = forms.CharField(label="",
-                                widget=forms.TextInput(attrs={'placeholder': '모델 검색'}))
+                                widget=forms.TextInput(attrs={'placeholder': '자동차 모델명'}))
 
 
 # class RatingForm(forms.Form):

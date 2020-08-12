@@ -1,28 +1,124 @@
-{% extends 'base.html' %}
+
+{% load static %}
 {% load get_shop_rating %}
-{% block page_name %}
-Mypage
-{% endblock page_name %}
 
-{% block content %}
-    <h1>Profile</h1>
-   
-    <div>{{ user.username }}님이 찜한 대리점:</div>
-    <ul>
-        {% for like_shop in like_shops %}
-            <li>
-                <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
-                <form action="{% url 'users:rate_shop_ajax' %}" method="post">
-                {% csrf_token %}
-                    <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
-                    {{ rating_form.as_table }}
-                    <button class="jsRateBtn" type="submit" onClick="clickRate()">평가하기</button>
-                </form>
-                <div>내가 준 별점: {{like_shop.ratings.all|get_shop_rating:user}}</div>
-                {% comment %} <button onClick="clickEditRating()" class="jsEditRating">수정하기</button> {% endcomment %}
-            </li>
-        {% endfor %}
-    </ul>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-{% endblock %}
+   <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
+
+    <link rel="stylesheet" href="{% static 'styles/mypage.css' %}">
+</head>
+
+<body>
+    <!--nav bar identical to search.html-->
+    <nav>
+        <div class="nav__bar__container">
+            <div class="logo">
+                <a href="{% url 'core:home' %}"><img src="{% static 'images/logo_white.png' %}" alt="logo"></a>
+            </div>
+            <form action="" class="search__container">
+                <div class="search__region">
+                    <select name="" id="">
+                        <optgroup>
+                            <option value="" disabled selected>지역</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="search__car">
+                    <input type="text" placeholder="자동차 모델명" />
+                </div>
+            </form>
+            <div class="mypage">
+                <a href="{% url 'shops:shop_search' %}"><span>검색 페이지</span></a>
+            </div>
+        </div>
+    </nav>
+    <!--my page title-->
+    <div class="mypage__title">
+        <h1>마이 페이지</h1>
+    </div>
+
+    <!--Liked shops list-->
+    <div class="main__container">
+        <div class="left__container">
+            <div class="shops__ranking__wrapper">
+                <h3>우수 대리점</h3>
+                <!--Please insert liked list of shops-->
+                <div class="shops__ranking__container">
+                    <ul>
+                        <li><a href="">this is shop ranking list</a></li>
+                    </ul>
+                    <!--Please insert recent search list of shops-->
+                </div>
+            </div>
+            <div class="recent__search__wrapper">
+                <h3>최근 검색</h3>
+                <div class="recent__search__container">
+                    <ul>
+                        <li><a href="">this is recent search list</a></li>
+                    </ul>
+                    <!--Please insert ranking of the shops-->
+                </div>
+            </div>
+        </div>
+        <div class="right__container__wrapper">
+            <h3>{{ user.username }}님이 찜한 대리점</h3>
+            <div class="right__container">
+                {% for like_shop in like_shops %}
+                    <div>
+                        <div class="right__container__shop__name">
+                            <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
+                        </div>
+                        <div class="my_rating">나의 별점: {{like_shop.ratings.all|get_shop_rating:user}}점</div>
+                        <form action="{% url 'users:rate_shop_ajax' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
+                            {{ rating_form.as_table }}
+                            <button class="jsRateBtn" type="submit" onClick="clickRate()">평가하기</button>
+                        </form>
+
+                        {% comment %} <button onClick="clickEditRating()" class="jsEditRating">수정하기</button> {% endcomment %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!--ad banner-->
+    <div class="search__banner">
+    </div>
+    <!--footer-->
+    <footer>
+        <div class="footer_container">
+          <div class="footer_text">
+            <h2>보고타</h2>
+            <h5>
+              팀원: 유병욱 정수현 김우영 박소민 이혜인
+            </h5>
+            <h5>주소: 08826 서울특별시 관악구 관악로 1</h5>
+          </div>
+        </div>
+      </footer>
+
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
+   <script
+   src="https://code.jquery.com/jquery-3.4.1.min.js"
+   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+   crossorigin="anonymous"></script>
+   <script src="{% static 'widgets/rateit/scripts/jquery.rateit.min.js' %}" ></script>
+
+{# Load javascript #}
+
+   <script src="{% static 'js/main.js' %}"></script>
+   {% comment %} <script src="{% static 'widgets' %}"></script> {% endcomment %}
+</body>
+
+</html>

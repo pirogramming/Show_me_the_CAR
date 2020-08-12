@@ -1,7 +1,7 @@
 body {
     background-size:cover;
     background-repeat: no-repeat;
-    background-image: url(palisade_ad.jpeg);
+    /* background-image: url('/static/images/palisade_ad.jpeg'); */
     font-family: "Apple SD Gothic Neo";
     color: black;
     margin: 0;

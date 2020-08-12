@@ -80,20 +80,26 @@ nav {
   color: white;
 }
 
-.mypage__title {
+.search__title {
   display: flex;
   justify-content: center;
   font-family: "Apple SD Gothic Neo";
   margin-top: 2rem;
 }
 
+.search__title h1 {
+  padding: 0 4rem 0.7rem 4rem;
+  border-bottom: 1px solid gray;
+}
+
 .search__query h3 {
-  margin-left: 8rem;
+  margin-left: 9rem;
 }
 
 .search__query span {
   color: rgb(26, 53, 91);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .mypage {
@@ -109,13 +115,6 @@ nav {
   color: white;
 }
 
-.search__title {
-  display: flex;
-  justify-content: center;
-  font-family: "Apple SD Gothic Neo";
-  margin-top: 2rem;
-}
-
 .main_content {
   display: flex;
   justify-content: space-evenly;
@@ -125,22 +124,55 @@ nav {
 
 .left_container {
   background-color: rgba(229, 229, 229, 0.3);
-  height: 60rem;
-  width: 58%;
+  height: 30rem;
+  width: 38%;
   overflow: scroll;
   overflow-x: hidden;
   border-radius: 0.2rem;
+  padding: 2rem 0 2rem 2rem;
+}
+
+.left_container > div:nth-child(1) {
+  border-top: 1px solid lightgray;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  width: 90%;
+}
+
+.left_container > div {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  width: 90%;
 }
 
 .left_container button {
-  background-color: white;
+  background-color: rgba(229, 229, 229, 0);
   color: red;
+  border: none;
+  font-size: 1.1rem;
+  margin: 0 0.5rem 0 1rem;
+}
+
+.left_container button:focus {
+  border: none;
+}
+
+.left__container__shop__name a {
+  color: rgb(26, 53, 91);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.left__container__shop__name {
+  display: inline-block;
 }
 
 .right_container {
   background-color: rgba(229, 229, 229, 0.3);
-  height: 60rem;
-  width: 38%;
+  height: 34rem;
+  width: 58%;
 }
 
 

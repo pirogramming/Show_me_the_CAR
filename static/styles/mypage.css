@@ -62,6 +62,10 @@ nav {
     border: none;
 }
 
+.search__car p {
+  margin: 0;
+}
+
 .mypage {
     margin-top: 1.15rem;
     margin-left: 6rem;
@@ -81,6 +85,12 @@ nav {
     justify-content: center;
     font-family: "Apple SD Gothic Neo";
     margin-top: 2rem;
+}
+
+.mypage__title h1 {
+    color: black;
+    padding: 0 4rem 0.7rem 4rem;
+    border-bottom: 1px solid gray;
 }
 
 .main__container {
@@ -126,7 +136,42 @@ nav {
     background-color: rgba(229, 229, 229, 0.3);
     overflow: scroll;
     overflow-x: hidden;
-    padding: 1rem;
+    padding: 2rem 0 2rem 2rem;
+}
+
+.right__container > div:nth-child(1) {
+    border-top: 1px solid lightgray;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.right__container > div {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    width: 95%;
+}
+
+.my_rating {
+    font-size: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.right__container__shop__name {
+    margin-bottom: 0.5rem;
+}
+
+.right__container__shop__name a {
+    color: rgb(26, 53, 91);
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-left: 1rem;
+}
+
+.right__container fomr {
+    margin-left: 1rem;
 }
 
 .footer_container {

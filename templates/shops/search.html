@@ -8,13 +8,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="{% static 'styles/search.css' %}" />
+        <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}" />
     </head>
     <body>
     <!--nav bar 시작-->
     <nav>
         <div class="nav__bar__container">
             <div class="logo">
-                <a href="{% url 'shops:shop_search' %}"><img src="logo_white.png" alt="logo" /></a>
+                <a href="{% url 'core:home' %}"><img src="{% static 'images/logo_white.png' %}" alt="logo" /></a>
             </div>
             <form action="" class="search__container">
                 <div class="search__region">
@@ -29,7 +30,7 @@
                 </div>
             </form>
             <div class="mypage">
-                <a href="http://127.0.0.1:5500/mypage.html"><span>마이 페이지</span></a>
+                <a href="{% url 'users:mypage' %}"><span>마이 페이지</span></a>
             </div>
         </div>
     </nav>
@@ -44,8 +45,6 @@
         <div class="left_container">
             {% for shop in shops %}
                 <div>
-                    <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
-
                     <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
 
                     {% if user in shop.like_users.all %}
@@ -57,6 +56,9 @@
                         <i class="far fa-heart"></i>
                         </button>
                     {% endif %}
+                    <div class="left__container__shop__name">
+                        <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
@@ -90,7 +92,8 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-   <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+
    <script
    src="https://code.jquery.com/jquery-3.4.1.min.js"
    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -109,12 +112,12 @@
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
     <title>Document</title>
 </head>
-<body>
+<body style="background-image: url({% static 'images/palisade_ad.jpeg' %});">
 <!--nav bar identical to search.html-->
 <nav>
     <div class="nav__bar__container">
         <div class="logo">
-            <a href="{% url 'shops:shop_search' %}"><img src="logo_white.png" alt="logo"></a>
+            <a href="{% url 'shops:shop_search' %}"><img src="{% static 'images/logo_white.png' %}" alt="logo"></a>
 
         </div>
         <div class="about">
