@@ -12,7 +12,7 @@ from cars import models as cars_models
 
 def home(request):
     form = forms.SearchForm()
-    return render(request, "base.html", {"form": form})
+    return render(request, "shops/search.html", {"form": form})
 
 
 class ShopSearchView(View):

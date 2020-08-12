@@ -1,0 +1,170 @@
+body {
+    font-family: "Apple SD Gothic Neo";
+    color: #333D4B;
+    margin: 0;
+}
+
+nav {
+    height: 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: rgb(26, 53, 91);
+}
+
+.nav__bar__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.6rem 0 0.2rem 0;
+    background-color: rgb(26, 53, 91);
+}
+
+.logo img {
+    height: 3rem;
+    margin-right: 2rem;
+    margin-top: 0.2rem;
+}
+
+.search__container {
+    display: flex;
+}
+  
+.search__region select {
+    height: 2.55rem;
+    width: 10rem;
+    border-radius: 0.2rem;
+    background-color: white;
+    margin-top: 0.4rem;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1.1rem;
+    padding-left: 1rem;
+    padding-top: 0.1rem;
+    color: gray;
+    border: none;
+}
+
+.seach__region select option {
+    background-color: white;
+}
+  
+.search__car input {
+    height: 2.43rem;
+    width: 30rem;
+    border-radius: 0.2rem;
+    margin-top: 0.4rem;
+    margin-left: 0.5rem;
+    background-color: white;
+    font-family: "Apple SD Gothic Neo";
+    line-height: 100%;
+    font-size: 1.1rem;
+    padding-left: 1.2rem;
+    border: none;
+}
+
+.mypage {
+    margin-top: 1.15rem;
+    margin-left: 6rem;
+    margin-right: 3rem;
+}
+
+.mypage a {
+    text-decoration: none;
+    color: black;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1em;
+    color: white;
+}
+
+.mypage__title {
+    display: flex;
+    justify-content: center;
+    font-family: "Apple SD Gothic Neo";
+    margin-top: 2rem;
+}
+
+.main__container {
+    display: flex;
+    margin-left: 6rem;
+}
+
+.main__container h3 {
+    text-align: center;
+}
+
+.left__container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.shops__ranking__container {
+    height: 18rem;
+    border-radius: 0.2rem;
+    background-color: rgba(229, 229, 229, 0.3);
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 1rem;
+    margin-right: 0.5rem;
+
+}
+
+.recent__search__container {
+    height: 18rem;
+    border-radius: 0.2rem;
+    background-color: rgba(229, 229, 229, 0.3);
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 1rem;
+    margin-right: 0.5rem;
+
+}
+
+.right__container {
+    height: 30rem;
+    width: 34rem;
+    border-radius: 0.2rem;
+    background-color: rgba(229, 229, 229, 0.3);
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 1rem;
+}
+
+.footer_container {
+    border-top: 0.5px solid lightgray;
+    margin-top: 8rem;
+    padding: 1rem 10rem 0 10rem;
+    width: 100%;
+    background-color: white;
+    position: relative;
+    color: #333D4B;
+
+}
+
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+    width: 8px; /* 1px wider than Lion. */
+    /* This is more usable for users trying to click it. */
+    background-color: rgba(0,0,0,0);
+    -webkit-border-radius: 100px;
+  }
+  /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+  ::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+  
+  /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+  ::-webkit-scrollbar-thumb:vertical {
+    /* This is the EXACT color of Mac OS scrollbars. 
+       Yes, I pulled out digital color meter */
+    background: rgba(0,0,0,0.5);
+    -webkit-border-radius: 100px;
+  }
+  ::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+  }
+  
+  /*background: linear-gradient(45deg, white, silver);
+  min-height: 100%;
+}*/
+

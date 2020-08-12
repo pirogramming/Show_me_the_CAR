@@ -1,10 +1,36 @@
-  <a href="/">Show Me The Car</a>
+<nav>
+    <div class="nav__bar__container">
+        <div class="logo">
+            <a href="{% url 'shops:shop_list' %}"><img src="logo_white.png" alt="logo"></a>
+        </div>
+        <form action="{% url 'shops:shop_search'%}" method='GET' class="search__container">
+            <div class="search__region">
+                <select name="" id="">
+                    <optgroup>
+                        <option value="" disabled selected>지역</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="search__car">
+                <ul>
+                    <li>{{form.as_p}}</li>
+                </ul>
+                <!--<input type="text" placeholder="자동차 모델명" />-->
+            </div>
+        </form>
+        <div class="mypage">
+            <a href="http://127.0.0.1:5500/search.html"><span>검색 페이지</span></a>
+        </div>
+    </div>
+</nav>
 
-  {% if not user.is_authenticated %} 
+<!--
+  {% if not user.is_authenticated %}
   {% block login_block %}
   <ul>
     <li><a href="{% url 'login:login_page' %}">Login</a></li>
   </ul>
   {% endblock login_block %}
   {% endif %}
+-->
     

@@ -6,19 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block page_name %}{% endblock page_name %}| Show Me The Car</title>
 
+    <link rel="stylesheet" href="{% static 'styles/search.css' %}">
 </head>
 <body>
    <header>
-      {% include "partials/nav.html" %} 
       {% block search-bar %}
-        <form method="get" action="{% url 'shops:shop_search' %}">
-            <input name="car_model"  placeholder="차 모델을 검색하세요" />
-            <button>검색</button>
-        </form>
+          <nav>
+              <div class="nav__bar__container">
+                  <div class="logo">
+                    <a href="http://127.0.0.1:5500/main.html"><img src="logo_white.png" alt="logo"></a>
+
+                  </div>
+                  <div class="about">
+                      <a href=""><span>회사 소개</span></a>
+                      <a href=""><span>자주 묻는 질문</span></a>
+                  </div>
+              </div>
+          </nav>
       {% endblock search-bar %}
    </header>
-
-
    {% block content %}{% endblock content %}
 
    {% include "partials/footer.html" %}

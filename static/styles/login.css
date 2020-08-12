@@ -1,0 +1,86 @@
+body {
+    font-family: "Apple SD Gothic Neo";
+    color: black;
+    background-color: rgba(229, 229, 229);
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+nav {
+    height: 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+.nav__bar__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.6rem 0 0.2rem 0;
+    background-color: rgb(26, 53, 91);
+}
+
+.logo img {
+    height: 3rem;
+    margin-right: 2rem;
+    margin-top: 0.2rem;
+}
+
+.about {
+    margin-top: 1.15rem;
+    margin-left: 41rem;
+    margin-right: 3rem;
+}
+
+.about a{
+    text-decoration: none;
+    color: black;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1em;
+    color: white;
+    margin: 0 0.5rem;
+}
+
+.login__container {
+    text-align: center;
+    background-color:white;
+    border-radius: 0.2rem;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+    width: 24rem;
+    height: 20rem;
+    margin: 6rem auto;
+    color: #333D4B;
+    padding: 2rem 0 1rem 0;
+}
+
+.login__container h1 {
+    color: rgb(26, 53, 91);
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+
+.login__btn__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.login__btn__container button {
+    margin: 1rem 0 1rem 0;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 0.2rem;
+    border: none;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1rem;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(26, 53, 91, 0.5);
+    color: white;
+}
+

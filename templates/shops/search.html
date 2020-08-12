@@ -1,54 +1,151 @@
-{% extends 'base.html' %}
-{% block page_name %}
-    Search
-{% endblock page_name %}
+{% load static %}
 
-{% block search-bar %}
-{% endblock search-bar %}
-
-{% block content %}
-
-    <h2>Search!</h2>
-
-    <form action="{% url 'shops:shop_search'%}" method="get">
-        {{form.as_p}}
-        <button>검색!</button>
-    </form>
-    
-    {% if shops %}<h4>검색어: {{query}}</h4>
-        
-        {% for shop in shops %}
-            <div>
-                <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
-
-                <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
-
-                {% if user in shop.like_users.all %}
-                    <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="liked" class="" id=like-button{{shop.pk}}>
-                    <i class="fas fa-heart"></i>
-                {% else %}
-                    <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="not_liked" class="" id=like-button{{shop.pk}}>
-                    <i class="far fa-heart"></i>
-                {% endif %}
-                        
-                </button>
-
-
+{% if shops %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'styles/search.css' %}" />
+    </head>
+    <body>
+    <!--nav bar 시작-->
+    <nav>
+        <div class="nav__bar__container">
+            <div class="logo">
+                <a href="{% url 'shops:shop_search' %}"><img src="logo_white.png" alt="logo" /></a>
             </div>
-        {% endfor %}
+            <form action="" class="search__container">
+                <div class="search__region">
+                    <select name="" id="">
+                        <optgroup>
+                            <option value="" disabled selected>지역</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="search__car">
+                    {{ form.as_p }}
+                </div>
+            </form>
+            <div class="mypage">
+                <a href="http://127.0.0.1:5500/mypage.html"><span>마이 페이지</span></a>
+            </div>
+        </div>
+    </nav>
+    <div class="search__title">
+        <h1>검색 결과</h1>
+    </div>
+    <div class="search__query">
+        <h3><span>{{ query }} </span>를 전시 중인 대리점...</h3>
+    </div>
+    <!--main container 시작-->
+    <div class="main_content">
+        <div class="left_container">
+            {% for shop in shops %}
+                <div>
+                    <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
 
-        <h5>
-            {% if shops.has_previous %}
-                <a href="{% url 'shops:shop_search'%}?car_model={{query}}&/?page={{shops.previous_page_number}}">이전</a>
-            {% endif %}
-            
-            Page {{shops.number}} of {{shops.paginator.num_pages}}
+                    <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
 
-            {% if shops.has_next %}
-                <a href="{% url 'shops:shop_search'%}?car_model={{query}}&/?page={{shops.next_page_number}}">다음</a>
-                {% comment %} <a href="?page={{shops.next_page_number}}">다음</a> {% endcomment %}
-            {% endif %}
-        </h5>
-    {% endif %}
+                    {% if user in shop.like_users.all %}
+                        <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="liked" class="" id=like-button{{shop.pk}}>
+                        <i class="fas fa-heart"></i>
+                        </button>
+                    {% else %}
+                        <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="not_liked" class="" id=like-button{{shop.pk}}>
+                        <i class="far fa-heart"></i>
+                        </button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="right_container"></div>
+    </div>
+    <!--
+    <h5>
+        {% if shops.has_previous %}
+            <a href="{% url 'shops:shop_search'%}?car_model={{query}}&/?page={{shops.previous_page_number}}">이전</a>
+        {% endif %}
 
-{% endblock content %}
+        Page {{shops.number}} of {{shops.paginator.num_pages}}
+
+        {% if shops.has_next %}
+            <a href="{% url 'shops:shop_search'%}?car_model={{query}}&/?page={{shops.next_page_number}}">다음</a>
+            {% comment %} <a href="?page={{shops.next_page_number}}">다음</a> {% endcomment %}
+        {% endif %}
+    </h5>-->
+    <!--footer-->
+    <footer>
+        <div class="footer_container">
+            <div class="footer_text">
+                <h2>보고타</h2>
+                <h5>
+                    팀원: 유병욱 정수현 김우영 박소민 이혜인
+                </h5>
+                <h5>주소: 08826 서울특별시 관악구 관악로 1</h5>
+            </div>
+        </div>
+    </footer>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
+   <script
+   src="https://code.jquery.com/jquery-3.4.1.min.js"
+   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+   crossorigin="anonymous"></script>
+   <script src="{% static 'widgets/rateit/scripts/jquery.rateit.min.js' %}" ></script>
+    </body>
+    </html>
+
+{% else %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <title>Document</title>
+</head>
+<body>
+<!--nav bar identical to search.html-->
+<nav>
+    <div class="nav__bar__container">
+        <div class="logo">
+            <a href="{% url 'shops:shop_search' %}"><img src="logo_white.png" alt="logo"></a>
+
+        </div>
+        <div class="about">
+            <a href=""><span>회사 소개</span></a>
+            <a href=""><span>자주 묻는 질문</span></a>
+        </div>
+    </div>
+</nav>
+
+<!-- 검색 창 -->
+<div class="search__container">
+    <h2>모델을 검색해보세요!</h2>
+    <form action="{% url 'shops:shop_search'%}" method="get" class="search__container__form">
+        <div class="search__area">
+            <select>
+                <optgroup>
+                    <option value="" disabled selected>지역</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="search__car">
+            {{ form.as_p }}
+        </div>
+        <div class="search__btn__container">
+            <button><a href="{% url 'login:login_page' %}">로그인</a></button>
+            <button>회원가입</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+{% endif %}
+
