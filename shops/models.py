@@ -16,7 +16,7 @@ class Shop(core_models.TimeStampedModel):
     phone_number = models.CharField(max_length=80, blank=True, null=True)
     average = models.IntegerField(blank=True, null=True)
     like_users = models.ManyToManyField(
-        User, related_name="like_shops", blank=True, through="Rating"
+        "users.User", related_name="like_shops", blank=True, through="Rating"
     )
 
     def __str__(self):
@@ -25,14 +25,33 @@ class Shop(core_models.TimeStampedModel):
     def get_absolute_url(self):
         return reverse("shops:shop_detail", kwargs={"pk": self.pk})
 
+    def get_average_rating(self):
+        ratings = self.ratings.all()
+        sum_rating = 0
+        number_of_ratings = 0
+        for rating in ratings:
+            if rating.rating is None:
+                rating.rating = 0
+            sum_rating += int(rating.rating)
+            number_of_ratings += 1
+        try:
+            avg_rating = round(sum_rating / number_of_ratings)
+        except ZeroDivisionError:
+            avg_rating = 0
+        return avg_rating
+
 
 class Rating(core_models.TimeStampedModel):
 
     """ Rating Model Definition """
 
-    user = models.ForeignKey(User, related_name="rate_shop", on_delete=models.CASCADE)
-    shop = models.ForeignKey(Shop, related_name="rate_user", on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        "users.User", related_name="ratings", on_delete=models.CASCADE, null=True
+    )
+    shop = models.ForeignKey(
+        "shops.Shop", related_name="ratings", on_delete=models.CASCADE
+    )
     rating = models.IntegerField(
-        validators=[MaxValueValidator(5), MinValueValidator(1)], blank=True, null=True
+        validators=[MaxValueValidator(5), MinValueValidator(1)], blank=True, default=0,
     )
 
