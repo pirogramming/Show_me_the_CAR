@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator
 from core import models as core_models
 
 
@@ -15,7 +16,7 @@ class Shop(core_models.TimeStampedModel):
     phone_number = models.CharField(max_length=80, blank=True, null=True)
     average = models.IntegerField(blank=True, null=True)
     like_users = models.ManyToManyField(
-        "users.User", related_name="like_shops", blank=True
+        User, related_name="like_shops", blank=True, through="Rating"
     )
 
     def __str__(self):
@@ -29,9 +30,9 @@ class Rating(core_models.TimeStampedModel):
 
     """ Rating Model Definition """
 
-    user = models.ManyToManyField("users.User", related_name="ratings")
-    shop = models.ForeignKey(
-        Shop, related_name="shops_rating", on_delete=models.CASCADE
+    user = models.ForeignKey(User, related_name="rate_shop", on_delete=models.CASCADE)
+    shop = models.ForeignKey(Shop, related_name="rate_user", on_delete=models.CASCADE)
+    rating = models.IntegerField(
+        validators=[MaxValueValidator(5), MinValueValidator(1)], blank=True, null=True
     )
-    rating = models.SmallIntegerField(blank=True)
 
