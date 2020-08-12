@@ -1,10 +1,13 @@
   <a href="/">Show Me The Car</a>
-  
-  {% comment %} {% if not user.is_authenticated %}  {% endcomment %}
-  {% block login_block %}
-  <ul>
-    <li><a href="{% url 'login:login_page' %}">Login</a></li>
-  </ul>
-  {% endblock login_block %}
-  {% comment %} {% endif %} {% endcomment %}
+
+<div class="z-10">
+    {% comment %} {% if not user.is_authenticated %}  {% endcomment %}
+    {% block login_block %}
+    <ul>
+        <li><a href="{% url 'login:login_page' %}">Login</a></li>
+    </ul>
+    {% endblock login_block %}
+    {% comment %} {% endif %} {% endcomment %}
+</div>
+
     

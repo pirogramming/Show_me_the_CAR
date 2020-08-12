@@ -133,6 +133,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+# 스태틱 파일 경로 추가
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 AUTH_USER_MODEL = "users.User"
 
 AUTHENTICATION_BACKENDS = (
