@@ -75,11 +75,11 @@
                         <div class="right__container__shop__name">
                             <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
                         </div>
-                        <div class="my_rating">나의 별점: {{like_shop.ratings.all|get_shop_rating:user}}점</div>
+                        <div class="my_rating">나의 별점: {{like_shop.ratings.all|get_shop_rating:user}} {{like_shop.ratings.all}}점</div>
                         <form action="{% url 'users:rate_shop_ajax' %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
-                            {{ rating_form.as_table }}
+                            {{ rating_form.as_p }}
                             <button class="jsRateBtn" type="submit" onClick="clickRate()">평가하기</button>
                         </form>
 

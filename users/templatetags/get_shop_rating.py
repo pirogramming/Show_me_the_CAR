@@ -8,5 +8,8 @@ register = template.Library()
 
 @register.filter
 def get_shop_rating(shop_ratings, user):
+    # print(shop_ratings)
+    # print(user)
     rating = shop_ratings.get(user=user).rating
+    # print(rating)
     return rating
