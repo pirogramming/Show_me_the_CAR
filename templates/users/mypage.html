@@ -3,6 +3,13 @@
 {% block page_name %}
 Mypage
 {% endblock page_name %}
+{% block javascript %}
+{% comment %} <script>
+    const clickthisRate = () => {
+        console.log("clicked!")
+    }
+</script> {% endcomment %}
+{% endblock javascript %}
 
 {% block content %}
     <h1>Profile</h1>
@@ -12,14 +19,15 @@ Mypage
         {% for like_shop in like_shops %}
             <li>
                 <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
-                <form action="{% url 'users:rate_shop_ajax' %}" method="post">
-                {% csrf_token %}
+                <form id="jsForm{{like_shop.id}}" action="" onsubmit="clickRate(shop_id={{like_shop.id}}, url='{% url 'users:rate_shop_ajax' %}', current_rating={{like_shop.ratings.all|get_shop_rating:user}}, event)" style="display: none;">
+                    {% csrf_token %}
                     <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
                     {{ rating_form.as_table }}
-                    <button class="jsRateBtn" type="submit" onClick="clickRate()">평가하기</button>
+                    <button class="jsRateBtn" type="submit">평가하기</button>
                 </form>
-                <div>내가 준 별점: {{like_shop.ratings.all|get_shop_rating:user}}</div>
-                {% comment %} <button onClick="clickEditRating()" class="jsEditRating">수정하기</button> {% endcomment %}
+                <div>내가 준 별점: <span id="jsMyRating{{like_shop.id}}">{{like_shop.ratings.all|get_shop_rating:user}}</span></div>
+                <button onclick="clickEditRating(shop_id={{like_shop.id}}, event)" id="jsEditRating{{like_shop.id}}">수정하기</button>
+                <button onclick="clickCancelEditRating(shop_id={{like_shop.id}}, event)" id="jsCancelEditRating{{like_shop.id}}" style="display: none;">취소</button>
             </li>
         {% endfor %}
     </ul>

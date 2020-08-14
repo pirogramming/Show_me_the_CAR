@@ -54,10 +54,7 @@ class Rating(core_models.TimeStampedModel):
         "shops.Shop", related_name="ratings", on_delete=models.CASCADE
     )
     rating = models.IntegerField(
-        validators=[MaxValueValidator(5), MinValueValidator(1)],
-        blank=True,
-        default=0,
-        verbose_name="",
+        validators=[MaxValueValidator(5), MinValueValidator(1)], blank=True, default=0,
     )
 
     def __str__(self):

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
 
 from .forms import RatingForm
-from .models import User
-from shops.models import Rating, Shop
+from . import models as user_models
+from shops import models as shop_models
 
 
 def render_mypage(request):
@@ -23,18 +23,17 @@ def render_mypage(request):
     return render(request, "users/mypage.html", ctx)
 
 
-# @require_POST
+@require_POST
 def rate_shop_ajax(request):
-    print(request.POST)
-    rating_value = request.POST["rating"]
-    print(rating_value)
-    shop_id = request.POST["shop_id"]
-    print(shop_id)
-    rating = Rating.objects.get(user_id=request.user.id, shop_id=shop_id)
-    rating.rating = rating_value
+    user = request.user
+    shop = shop_models.Shop.objects.get(id=request.POST.get("shop_id"))
+    print(user)
+    print(shop)
+    my_rating = request.POST.get("my_rating")
+    rating = shop_models.Rating.objects.get(user=user, shop=shop)
+    rating.rating = my_rating
     rating.save()
-    url = reverse("users:mypage")
-    return redirect(to=url)
-    # data = {}
-    # return JsonResponse(data)
+    print(rating)
+    data = {}
+    return JsonResponse(data)
 

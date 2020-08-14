@@ -10,4 +10,7 @@ class RatingForm(forms.ModelForm):
         widgets = {
             "rating": RateShopWidget,
         }
+        labels = {
+            "rating": "",
+        }
 
