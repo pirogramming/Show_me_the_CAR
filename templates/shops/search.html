@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block page_name %}
     Search
 {% endblock page_name %}
@@ -16,18 +18,151 @@
     </form>
     
     {% if shops %}<h4>검색어: {{query}}</h4>
-        
-        {% for shop in shops %}
-            <div>
-                <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
-                <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
-                {% if user in shop.like_users.all %}
-                    <a href="{% url 'shops:shop_like' shop.id %}"><i class="fas fa-heart"></i></a>
-                {% else %}
-                    <a href="{% url 'shops:shop_like' shop.id %}"><i class="far fa-heart"></i></a>
-                {% endif %}
-            </div>
-        {% endfor %}
+        <div id="result_list">
+            {% for shop in shops %}
+                <div>
+                    <a id="name_{{ shop.id }}" href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
+                    <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
+                    {% if user in shop.like_users.all %}
+                        <a href="{% url 'shops:shop_like' shop.id %}"><i class="fas fa-heart"></i></a>
+                    {% else %}
+                        <a href="{% url 'shops:shop_like' shop.id %}"><i class="far fa-heart"></i></a>
+                    {% endif %}
+
+                    <!-- 지도 열기 기능 -->
+                    <button id="map__button">지도 보기</button>
+
+                </div>
+            {% endfor %}
+        </div>
+
+    <div>
+        <!-- 클릭하기 전에 나오는 이미지인데,, 일단 보류
+        <span id="before_click_img">
+            <img src="http://hpimg.gsretail.com/_ui/desktop/common/images/gscvs/store/map_img.jpg" alt="before click branch">
+        </span>
+        -->
+        <!-- 지도 -->
+        <div id="map" style="width:350px;height:600px; float: right"></div>
+    </div>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=026187f5dea33f252d5fd79abc6dd270&libraries=clusterer"></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+
+    <script>
+
+        // 로직은 간단하게 일단 이럼,,
+
+        // 빼온 브랜치 이름 = shop_list 이면 지도에 lat, lng 찍어주기,,
+        // 결과 확인은 '지도 보기'
+        // 마커 커스텀은 일단 옵션으로 보류;;
+
+        // json 에서 branch, lat, lng 빼온다.
+        // 1. $.getJSON을 만난다.
+        var jsonData = $.getJSON("{% static "kia_data_brlatlng.json" %}", function(data){
+            // 6. 비동기 코드가 끝나서 json 데이터를 받아왔다. 함수의 인자로 넘어는 json값을 사용할 수 있다. 그렇다고 jsonData라는 변수에 할당되지는 않음.
+            // 여기가 콜백함수 인거 같은데,, 흠,,,,,,, 됏다ㅠㅠㅠ
+            //jsonData 라는 변수에는 아무 값도 할당되지 않아요.  json 값에 접근하는 로직을
+            //$.getJSON에 인자로 넘기는 콜백함수 내부에 작성하시면 값을 사용하실 수 있을거에요.
+            var shJsonData = jsonData.responseJSON.positions;
+
+            // #아이디 바뀌는거 이용해야됨.
+            // getElementById로 바뀌는 아이디 받아오기.
+            var getShopName = document.getElementById("name_681").innerHTML;
+
+            // 검색결과 받아오기.
+            var resultList = document.getElementById("result_list li:nth-child").innerHTML;
+
+            // 일단 지도부터 찍어주자.
+            var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+                center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
+                level : 14 // 지도의 확대 레벨
+            });
+
+
+            if(getShopName === shJsonData[680].branch) {
+                const myPosition = shJsonData[680];
+                new kakao.maps.Marker({
+                    map: map,
+                    position: new kakao.maps.LatLng(myPosition.lat, myPosition.lng)
+                });
+            }
+                /*
+                var marker = $(data.positions).map(function (i, position) {
+                    return new kakao.maps.Marker({
+                        map: map,
+                        position: new kakao.maps.LatLng(position.lat, position.lng)
+                    });
+                });
+                */
+
+
+            /*
+            // '지도 보기' 클릭하면 지도 보임
+            $('#map_button').click(function(){
+                $('#before_click_img').hide();
+            });
+            */
+
+            //
+            /*
+            for(var i = 0; i < shJsonData.length; i++) {
+                if(getShopName === shJsonData[i].branch) {
+                    var marker = $(jsonData.positions).map(function (k, position) {
+                        return new kakao.maps.Marker({
+                            map: map,
+                            position: new kakao.maps.LatLng(position.lat, position.lng)
+                        });
+                    });
+                }
+            }
+            */
+
+            /*
+            for(var i = 0; i < shJsonData.length; i++) {
+                console.log(shJsonData[i].branch);
+            }
+            */
+        });
+
+
+        /*
+        // 2. $.getJSON은 비동기적인 동작이라서 일단 건너뛴다. 이떄 jsonData는 undefined
+        // 3. 이제 그냥 동기적으로 흘러간다.
+        var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+                center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
+                level : 14 // 지도의 확대 레벨
+        });
+        // 4. 이떄 jsonData는 undefined라서 동작안함
+        for(var i = 0; i < jsonData.responseJSON.positions.length; i++) {
+            var marker = $(jsonData.positions).map(function (k, position) {
+                return new kakao.maps.Marker({
+                    map: map,
+                    position: new kakao.maps.LatLng(position.lat, position.lng)
+                });
+            });
+        }
+        // 5. 모든 코드가 다 실행되었다. 남아있는 비동기코드 확인해본다.
+*/
+
+
+
+        /*
+        for(var i = 0; i < jsonData.responseJSON.positions.length; i++) {
+            var marker = $(jsonData.positions).map(function (k, position) {
+                return new kakao.maps.Marker({
+                    map: map,
+                    position: new kakao.maps.LatLng(position.lat, position.lng)
+                });
+            });
+        }
+
+         */
+
+    </script>
 
         <h5>
             {% if shops.has_previous %}
