@@ -4,36 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block page_name %}{% endblock page_name %}| Show Me The Car</title>
+    <title>{% block page_name %} | 보고타{% endblock page_name %}</title>
 
-    <link rel="stylesheet" href="{% static 'styles/search.css' %}">
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
+    {% endblock %}
+
 </head>
 <body>
-   <header>
-      {% block search-bar %}
-          <nav>
-              <div class="nav__bar__container">
-                  <div class="logo">
-                    <a href="http://127.0.0.1:5500/main.html"><img src="logo_white.png" alt="logo"></a>
+    {% block nav %}
+        <nav>
+            <div class="nav__bar__container">
+                <div class="logo">
+                    <a href="{% url 'core:home' %}"><img src="{% static 'images/logo_white.png' %}" alt="logo" /></a>
+                </div>
+                <form method="GET" action="{% url 'shops:shop_search_main' %}" class="search__container">
+                    <div class="search__region">
+                        <select name="" id="">
+                            <optgroup>
+                                <option value="" disabled selected>지역</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="search__car">
+                        <input name="car_model"  placeholder="차 모델을 검색하세요" />
+                    </div>
+                </form>
+                <div class="searchpage">
+                    <a href="{% url 'shops:shop_search_main' %}"><span>검색 페이지</span></a>
+                </div>
+                <div class="mypage">
+                    <a href="{% url 'users:mypage' %}"><span>마이 페이지</span></a>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
 
-                  </div>
-                  <div class="about">
-                      <a href=""><span>회사 소개</span></a>
-                      <a href=""><span>자주 묻는 질문</span></a>
-                  </div>
-              </div>
-          </nav>
-      {% endblock search-bar %}
-   </header>
-   {% block content %}{% endblock content %}
+    {% block content %}
+    {% endblock content %}
 
-   {% include "partials/footer.html" %}
+    {% block footer %}
+    {% endblock %}
 
 {# i tag 불러오는 링크 #}
    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-   <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
+
    <script
    src="https://code.jquery.com/jquery-3.4.1.min.js"
    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

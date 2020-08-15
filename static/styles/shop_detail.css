@@ -1,0 +1,94 @@
+.search__detail__title {
+  display: flex;
+  justify-content: center;
+  font-family: "Apple SD Gothic Neo";
+  margin-top: 2rem;
+}
+
+.search__detail__title h1 {
+  padding: 0 4rem 0.7rem 4rem;
+  border-bottom: 1px solid gray;
+}
+
+.shop__detail__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10rem;
+    margin-top: 1rem;
+}
+
+.shop__detail__name h1 {
+    color: #333D4B;
+    margin-bottom: 0.7rem;
+}
+
+.shop__detail__rating h3 {
+    margin: 0;
+}
+
+.shop__detail__list__title {
+    margin-left: 3rem;
+    margin-top: 1rem;
+}
+
+.shop__detail__list__container {
+    background-color: rgba(229, 229, 229, 0.3);
+    padding: 1rem 1rem;
+    width: 28rem;
+    height: 30rem;
+    border-radius: 0.2rem;
+    overflow: scroll;
+}
+
+.shop__detail__list__container > div:nth-child(1) {
+  border-top: 1px solid lightgray;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.shop__detail__list__container > div {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+}
+
+.shop__detail__list__container a {
+    list-style: none;
+    text-decoration: none;
+    margin-left: 1rem;
+    color: rgb(26, 53, 91);
+    font-size: 1.1rem;
+}
+
+
+ /* Turn on custom 8px wide scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px; /* 1px wider than Lion. */
+        /* This is more usable for users trying to click it. */
+        background-color: rgba(0,0,0,0);
+        -webkit-border-radius: 100px;
+      }
+      /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+      ::-webkit-scrollbar:hover {
+        background-color: rgba(0, 0, 0, 0.09);
+      }
+
+      /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+      ::-webkit-scrollbar-thumb:vertical {
+        /* This is the EXACT color of Mac OS scrollbars.
+           Yes, I pulled out digital color meter */
+        background: rgba(0,0,0,0.5);
+        -webkit-border-radius: 100px;
+      }
+      ::-webkit-scrollbar-thumb:vertical:active {
+        background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+        -webkit-border-radius: 100px;
+      }
+
+      /*background: linear-gradient(45deg, white, silver);
+      min-height: 100%;
+    }*/

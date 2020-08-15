@@ -12,7 +12,7 @@ from cars import models as cars_models
 
 def home(request):
     form = forms.SearchForm()
-    return render(request, "shops/search.html", {"form": form})
+    return render(request, "shops/search_landing.html", {"form": form})
 
 
 class ShopSearchView(View):
@@ -38,7 +38,7 @@ class ShopSearchView(View):
                     filter_args["car__model_name__icontains"] = car_model
 
                 qs = shops_models.Shop.objects.filter(**filter_args).order_by(
-                    "-created"
+                    "created"
                 )
 
                 paginator = Paginator(qs, 30, orphans=5)
@@ -49,7 +49,7 @@ class ShopSearchView(View):
 
         else:
             form = forms.SearchForm()
-            shops = shops_models.Shop.objects.all().order_by("-created")
+            shops = shops_models.Shop.objects.all().order_by("created")
 
         context = {
             "user": user,
@@ -57,7 +57,7 @@ class ShopSearchView(View):
             "shops": shops,
             "query": query,
         }
-        return render(request, "shops/search.html", context=context)
+        return render(request, "shops/search_main.html", context=context)
 
 
 def shop_detail(request, id):

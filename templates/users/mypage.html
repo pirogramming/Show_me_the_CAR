@@ -1,44 +1,24 @@
+{% extends "base.html" %}
 
 {% load static %}
 {% load get_shop_rating %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block page_name %}
+    마이 페이지{{ block.super }}
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-   <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
-
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/partials/nav_search.css' %}">
     <link rel="stylesheet" href="{% static 'styles/mypage.css' %}">
-</head>
+{% endblock %}
 
-<body>
     <!--nav bar identical to search.html-->
-    <nav>
-        <div class="nav__bar__container">
-            <div class="logo">
-                <a href="{% url 'core:home' %}"><img src="{% static 'images/logo_white.png' %}" alt="logo"></a>
-            </div>
-            <form action="" class="search__container">
-                <div class="search__region">
-                    <select name="" id="">
-                        <optgroup>
-                            <option value="" disabled selected>지역</option>
-                        </optgroup>
-                    </select>
-                </div>
-                <div class="search__car">
-                    <input type="text" placeholder="자동차 모델명" />
-                </div>
-            </form>
-            <div class="mypage">
-                <a href="{% url 'shops:shop_search' %}"><span>검색 페이지</span></a>
-            </div>
-        </div>
-    </nav>
+{% block nav %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
     <!--my page title-->
     <div class="mypage__title">
         <h1>마이 페이지</h1>
@@ -92,33 +72,7 @@
     <!--ad banner-->
     <div class="search__banner">
     </div>
-    <!--footer-->
-    <footer>
-        <div class="footer_container">
-          <div class="footer_text">
-            <h2>보고타</h2>
-            <h5>
-              팀원: 유병욱 정수현 김우영 박소민 이혜인
-            </h5>
-            <h5>주소: 08826 서울특별시 관악구 관악로 1</h5>
-          </div>
-        </div>
-      </footer>
-
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-   <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
-   <script
-   src="https://code.jquery.com/jquery-3.4.1.min.js"
-   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-   crossorigin="anonymous"></script>
-   <script src="{% static 'widgets/rateit/scripts/jquery.rateit.min.js' %}" ></script>
-
-{# Load javascript #}
-
-   <script src="{% static 'js/main.js' %}"></script>
-   {% comment %} <script src="{% static 'widgets' %}"></script> {% endcomment %}
-</body>
-
-</html>
+{% endblock %}
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}
