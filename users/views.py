@@ -10,6 +10,7 @@ from shops import models as shop_models
 def render_mypage(request):
     user = request.user
     like_shops = user.like_shops.all()
+    best_shops = []
     # rating = user.ratings.all().filter(shop=like_shops)
     # print(like_shops)
     rating_form = RatingForm()
@@ -17,6 +18,7 @@ def render_mypage(request):
     ctx = {
         "user": user,
         "like_shops": like_shops,
+        "best_shops": best_shops,
         "rating_form": rating_form,
     }
 

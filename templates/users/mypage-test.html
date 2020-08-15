@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load get_shop_rating %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/mypage.css' %}">
+{% endblock %}
+
+    <!--nav bar identical to search.html-->
+{% block nav-bar %}
+    {% include "partials/nav-search.html" %}
+{% endblock %}
+
+{% block content %}
+    <!--my page title-->
+    <div class="mypage__title">
+        <h1>마이 페이지</h1>
+    </div>
+
+    <!--Liked shops list-->
+    <div class="main__container">
+        <div class="left__container">
+            <div class="shops__ranking__wrapper">
+                <h3>우수 대리점</h3>
+                <!--Please insert liked list of shops-->
+                <div class="shops__ranking__container">
+                    <ul>
+                        <li><a href="">this is shop ranking list</a></li>
+                    </ul>
+                    <!--Please insert recent search list of shops-->
+                </div>
+            </div>
+            <div class="recent__search__wrapper">
+                <h3>최근 검색</h3>
+                <div class="recent__search__container">
+                    <ul>
+                        <li><a href="">this is recent search list</a></li>
+                    </ul>
+                    <!--Please insert ranking of the shops-->
+                </div>
+            </div>
+        </div>
+        <div class="right__container__wrapper">
+            <h3>{{ user.username }}님이 찜한 대리점</h3>
+            <div class="right__container">
+                {% for like_shop in like_shops %}
+                    <div>
+                        <div class="right__container__shop__name">
+                            <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
+                        </div>
+                        <div class="my_rating">나의 별점: {{like_shop.ratings.all|get_shop_rating:user}}점</div>
+                        <form action="{% url 'users:rate_shop_ajax' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
+                            {{ rating_form.as_table }}
+                            <button class="jsRateBtn" type="submit" onClick="clickRate()">평가하기</button>
+                        </form>
+
+                        {% comment %} <button onClick="clickEditRating()" class="jsEditRating">수정하기</button> {% endcomment %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!—ad banner—>
+    <div class="search__banner">
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}

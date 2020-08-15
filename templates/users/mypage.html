@@ -4,16 +4,22 @@
 Mypage
 {% endblock page_name %}
 {% block javascript %}
-{% comment %} <script>
-    const clickthisRate = () => {
-        console.log("clicked!")
-    }
-</script> {% endcomment %}
 {% endblock javascript %}
 
 {% block content %}
     <h1>Profile</h1>
-   
+    <div class="shops__ranking__wrapper">
+        <h3>우수 대리점</h3>
+        <!--Please insert liked list of shops-->
+        <div class="shops__ranking__container">
+            <ul>
+                {% for shop in best_shops %}
+                    <li><a href="{% url 'shops:shop_detail' id=shop.id %}">{{ shop.name }}</a></li>
+                {% endfor %}
+            </ul>
+            <!--Please insert recent search list of shops-->
+        </div>
+    </div>
     <div>{{ user.username }}님이 찜한 대리점:</div>
     <ul>
         {% for like_shop in like_shops %}
