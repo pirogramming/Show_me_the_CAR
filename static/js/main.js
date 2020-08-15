@@ -36,8 +36,14 @@ const clickLike = (pk, url, csrf_token) => {
   $.ajax({
     type: "post",
     url: url,
-    data: { pk: pk, action: action, csrfmiddlewaretoken: csrf_token },
+    data: {
+      pk: pk,
+      action: action,
+      csrfmiddlewaretoken: csrf_token,
+      best_shops: best_shops,
+    },
     success: () => {
+      console.log(best_shops);
       console.log("success");
     },
     function(request, status, error) {
@@ -74,7 +80,6 @@ const clickRate = (shop_id, url, el) => {
 
   // Show Edit rating btn
   editRatingBtn = document.getElementById(`jsEditRating${shop_id}`);
-  console.log(editRatingBtn);
   editRatingBtn.setAttribute("style", "display: block;");
 
   // Hide Cancelation btn

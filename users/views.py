@@ -42,6 +42,9 @@ def rate_shop_ajax(request):
     rating.save()
     shop.save()
     print(rating)
-    data = {}
+    best_shops = shop_models.Shop.objects.exclude(average=None).order_by("-average")[
+        :10
+    ]
+    data = {"best_shops", best_shops}
     return JsonResponse(data)
 
