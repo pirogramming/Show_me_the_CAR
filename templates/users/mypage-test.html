@@ -3,20 +3,14 @@
 {% load static %}
 {% load get_shop_rating %}
 
-{% block page_name %}
-<<<<<<< HEAD
-    마이 페이지{{ block.super }}
-{% endblock %}
-
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'styles/partials/nav_search.css' %}">
     <link rel="stylesheet" href="{% static 'styles/mypage.css' %}">
 {% endblock %}
 
     <!--nav bar identical to search.html-->
-{% block nav %}
-    {{ block.super }}
+{% block nav-bar %}
+    {% include "partials/nav-search.html" %}
 {% endblock %}
 
 {% block content %}
@@ -56,27 +50,24 @@
                         <div class="right__container__shop__name">
                             <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
                         </div>
-                        <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
-                        <form id="jsForm{{like_shop.id}}" action="" onsubmit="clickRate(shop_id={{like_shop.id}}, url='{% url 'users:rate_shop_ajax' %}', event)" style="display: none;">
+                        <div class="my_rating">나의 별점: {{like_shop.ratings.all|get_shop_rating:user}}점</div>
+                        <form action="{% url 'users:rate_shop_ajax' %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
                             {{ rating_form.as_table }}
-                            <button class="jsRateBtn" type="submit">평가하기</button>
+                            <button class="jsRateBtn" type="submit" onClick="clickRate()">평가하기</button>
                         </form>
-                        <div>내가 준 별점: <span id="jsMyRating{{like_shop.id}}">{{like_shop.ratings.all|get_shop_rating:user}}</span></div>
-                        <button onclick="clickEditRating(shop_id={{like_shop.id}}, event)" id="jsEditRating{{like_shop.id}}">수정하기</button>
-                        <button onclick="clickCancelEditRating(shop_id={{like_shop.id}}, event)" id="jsCancelEditRating{{like_shop.id}}" style="display: none;">취소</button>
+
+                        {% comment %} <button onClick="clickEditRating()" class="jsEditRating">수정하기</button> {% endcomment %}
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
-    <!--ad banner-->
+    <!—ad banner—>
     <div class="search__banner">
     </div>
 {% endblock %}
 {% block footer %}
     {% include "partials/footer.html" %}
 {% endblock %}
-{% block javascript %}
-{% endblock javascript %}

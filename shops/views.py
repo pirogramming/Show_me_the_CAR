@@ -37,9 +37,7 @@ class ShopSearchView(View):
                 if car_model is not None:
                     filter_args["car__model_name__icontains"] = car_model
 
-                qs = shops_models.Shop.objects.filter(**filter_args).order_by(
-                    "created"
-                )
+                qs = shops_models.Shop.objects.filter(**filter_args).order_by("created")
 
                 paginator = Paginator(qs, 30, orphans=5)
 
@@ -109,6 +107,6 @@ def shop_like_ajax(request):
 
     elif action == "remove_like":
         shop.like_users.remove(user)
-
+    shop.save()
     data = {}
     return JsonResponse(data)
