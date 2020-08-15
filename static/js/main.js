@@ -74,7 +74,6 @@ const clickRate = (shop_id, url, el) => {
 
   // Show Edit rating btn
   editRatingBtn = document.getElementById(`jsEditRating${shop_id}`);
-  console.log(editRatingBtn);
   editRatingBtn.setAttribute("style", "display: block;");
 
   // Hide Cancelation btn
@@ -91,14 +90,16 @@ const clickRate = (shop_id, url, el) => {
 
   // Ajax
   $.ajax({
-    type: "post",
+    type: "POST",
     url: url,
+    // dataType: "json",
     data: {
       shop_id: shop_id,
       my_rating: my_rating,
       csrfmiddlewaretoken: csrftoken,
     },
-    success: () => {
+    success: (response) => {
+      console.log(response);
       console.log("success");
     },
     function(request, status, error) {
@@ -106,8 +107,4 @@ const clickRate = (shop_id, url, el) => {
       alert("fail");
     },
   });
-  // rateit = document.querySelector(".rateit.rateit-bg");
-  // rateBtn = document.querySelector(".jsEditRating");
-  // rateBtn.setAttribute("style", "display: none;");
-  // rateit.setAttribute("style", "display: none;");
 };
