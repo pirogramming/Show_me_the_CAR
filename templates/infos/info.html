@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/info.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/partials/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}">
+{% endblock %}
+
+{% block page_name %}
+    TEAM 보고타!
+{% endblock %}
+
+{% block nav %}
+    {% include 'partials/nav.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="main_container">
+        <div class="text_container">
+            <div class="title">
+                <hr class="line1">
+                <p>대리점을 쉽고 간편하게.</p></br>
+            </div>
+            <div class="detail">
+                <p>
+                    <span>보고타팀은 불편한 전시 자동차 서치를</span> </br>
+                    <span>해결하기 위해 모였습니다.</span> </br>
+                    <span>원하는 자동차 모델명으로</span> </br>
+                    <span>가까운 전시 대리점을 찾아보세요.</span>
+                </p>
+                <hr class="line2">
+
+            </div>
+        </div>
+    </div>
+    <div class="middle_container">
+        <div class="logo_middle">
+            <img src="{% static 'images/logo_blue.png' %}" alt="logo"
+            /></a>
+        </div>
+        <p>보고타는 2020년에 창립된 전시차를 찾아주는 서비스입니다.</br>
+            고객들로 하여금 원하는 자동차 모델명으로 전시 중인 대리점을 지도상에서 제시해 드립니다.</br>
+            부가적인 연락 없이, 구매의 압박감 없이 편하게 자동차를 가까운 대리점에서 구경하세요. </p>
+    </div>
+
+    <div class="service_container" id="service_container">
+        <div class="service_box">
+            <div class="service_detail">
+                찾으시는 모델명 검색
+            </div>
+        </div>
+        <div class="service_box">
+            <div class="service_detail">
+                전시 중인 대리점 확인
+            </div>
+        </div>
+        <div class="service_box">
+            <div class="service_detail">
+                원하는 대리점을 찜하기
+            </div>
+        </div>
+        <div class="service_box">
+            <div class="service_detail">
+                대리점 별점 남기기
+            </div>
+        </div>
+
+        <div class="service_box_text">
+
+        </div>
+    </div>
+
+    <div class="text_team">
+        <h2>TEAM</h2>
+    </div>
+    <div class="team_container">
+
+        <div class="team_box">
+            <div class="team_photo">
+                <img src="{% static 'images/team_1.png' %}">
+            </div>
+            <div class="name">
+                <p>팀장: 이혜인 <br /></p>
+            </div>
+        </div>
+
+        <div class="team_box">
+            <div class="team_photo">
+                <img src="{% static 'images/team_2.png' %}">
+            </div>
+            <div class="name">
+                <p>유병욱 <br /></p>
+            </div>
+        </div>
+
+        <div class="team_box">
+            <div class="team_photo_three">
+                <img src="{% static 'images/team_3.jpeg' %}">
+            </div>
+            <div class="name">
+                <p>박소민 <br /></p>
+            </div>
+        </div>
+
+        <div class="team_box">
+            <div class="team_photo">
+                <img src="{% static 'images/team_4.png' %}">
+            </div>
+            <div class="name">
+                <p>정수현<br /></p>
+            </div>
+        </div>
+
+        <div class="team_box">
+            <div class="team_photo">
+                <img src="{% static 'images/team_5.png' %}">
+            </div>
+            <div class="name">
+                <p>김우영<br /></p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'partials/footer.html' %}
+{% endblock %}

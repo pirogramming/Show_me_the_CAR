@@ -1,0 +1,101 @@
+body {
+    font-family: "Apple SD Gothic Neo";
+    color: black;
+    margin: 0;
+}
+
+nav {
+    height: 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: rgb(26, 53, 91);
+}
+
+.nav__bar__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.6rem 0 0.2rem 0;
+    background-color: rgb(26, 53, 91);
+}
+
+.logo img {
+    height: 3rem;
+    margin-right: 2rem;
+    margin-top: 0.2rem;
+}
+
+.search__container {
+    display: flex;
+}
+
+.search__region select {
+    height: 2.55rem;
+    width: 8rem;
+    border-radius: 0.2rem;
+    background-color: white;
+    margin-top: 0.4rem;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1.1rem;
+    padding-left: 1rem;
+    padding-top: 0.1rem;
+    color: gray;
+    border: none;
+}
+
+.search__region select option {
+    background-color: white;
+}
+
+.search__car input {
+    height: 2.43rem;
+    width: 25rem;
+    border-radius: 0.2rem;
+    margin-top: 0.4rem;
+    margin-left: 0.5rem;
+    background-color: white;
+    font-family: "Apple SD Gothic Neo";
+    line-height: 100%;
+    font-size: 1.1rem;
+    padding-left: 1.2rem;
+    border: none;
+}
+
+.search__car p {
+    margin: 0;
+}
+
+.searchpage {
+    height: 2.23rem;
+    margin-left: 4%;
+    margin-top: 0.4rem;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.8rem 0 0.8rem;
+}
+
+.searchpage a {
+    text-decoration: none;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1em;
+    color: white;
+    line-height: 2.23;
+    white-space: nowrap;
+}
+
+.mypage {
+    height: 2.23rem;
+    margin-left: 0;
+    margin-top: 0.4rem;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.8rem 0 0.8rem;
+}
+
+.mypage a {
+    text-decoration: none;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1em;
+    color: white;
+    line-height: 2.23;
+    white-space: nowrap;
+}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_name %}간편한 대리점 검색, 보고타!{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/partials/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/search_landing.css' %}">
+{% endblock %}
+
+{% block nav %}
+    {% include "partials/nav.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="main__container">
+        <!-- 검색 창 -->
+        <div class="search__container">
+            <h2>모델을 검색해보세요!</h2>
+            <form action="{% url 'shops:shop_search_landing'%}" method="get" class="search__container__form">
+                <div class="search__area">
+                    <select>
+                        <optgroup>
+                            <option value="" disabled selected>지역</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="search__car">
+                    {{ form.as_p }}
+                </div>
+                <div class="search__btn__container">
+                    <span><a href="{% url 'login:login_page' %}">로그인</a></span>
+                    <button>검색</button>
+                </div>
+            </form>
+        </div>
+        <div class="slogan__container">
+            <h1>"자동차 대리점을 간편하게 찾아보세요"</h1>
+            <h3>번거롭기만 했던 자동차 대리점 찾기</h3>
+            <h3>이제 보고타가 도와드리겠습니다</h3>
+        </div>
+    </div>
+{% endblock %}
