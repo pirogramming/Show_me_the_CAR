@@ -4,7 +4,6 @@
 {% load get_shop_rating %}
 
 {% block page_name %}
-<<<<<<< HEAD
     마이 페이지{{ block.super }}
 {% endblock %}
 
@@ -56,7 +55,6 @@
                         <div class="right__container__shop__name">
                             <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
                         </div>
-                        <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
                         <form id="jsForm{{like_shop.id}}" action="" onsubmit="clickRate(shop_id={{like_shop.id}}, url='{% url 'users:rate_shop_ajax' %}', event)" style="display: none;">
                             {% csrf_token %}
                             <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
