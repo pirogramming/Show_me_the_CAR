@@ -36,14 +36,8 @@ const clickLike = (pk, url, csrf_token) => {
   $.ajax({
     type: "post",
     url: url,
-    data: {
-      pk: pk,
-      action: action,
-      csrfmiddlewaretoken: csrf_token,
-      best_shops: best_shops,
-    },
+    data: { pk: pk, action: action, csrfmiddlewaretoken: csrf_token },
     success: () => {
-      console.log(best_shops);
       console.log("success");
     },
     function(request, status, error) {
@@ -96,14 +90,16 @@ const clickRate = (shop_id, url, el) => {
 
   // Ajax
   $.ajax({
-    type: "post",
+    type: "POST",
     url: url,
+    // dataType: "json",
     data: {
       shop_id: shop_id,
       my_rating: my_rating,
       csrfmiddlewaretoken: csrftoken,
     },
-    success: () => {
+    success: (response) => {
+      console.log(response);
       console.log("success");
     },
     function(request, status, error) {
@@ -111,8 +107,4 @@ const clickRate = (shop_id, url, el) => {
       alert("fail");
     },
   });
-  // rateit = document.querySelector(".rateit.rateit-bg");
-  // rateBtn = document.querySelector(".jsEditRating");
-  // rateBtn.setAttribute("style", "display: none;");
-  // rateit.setAttribute("style", "display: none;");
 };

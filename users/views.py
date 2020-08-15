@@ -1,3 +1,4 @@
+from django.core import serializers
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
@@ -42,9 +43,7 @@ def rate_shop_ajax(request):
     rating.save()
     shop.save()
     print(rating)
-    best_shops = shop_models.Shop.objects.exclude(average=None).order_by("-average")[
-        :10
-    ]
-    data = {"best_shops", best_shops}
-    return JsonResponse(data)
+    qs = shop_models.Shop.objects.exclude(average=None).order_by("-average")[:10]
+    best_shops = serializers.serialize("json", qs)
+    return JsonResponse(best_shops, safe=False)
 
