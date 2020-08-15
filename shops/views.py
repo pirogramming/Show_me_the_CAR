@@ -107,6 +107,6 @@ def shop_like_ajax(request):
 
     elif action == "remove_like":
         shop.like_users.remove(user)
-
+    shop.save()
     data = {}
     return JsonResponse(data)

@@ -14,7 +14,7 @@ Mypage
         <div class="shops__ranking__container">
             <ul>
                 {% for shop in best_shops %}
-                    <li><a href="{% url 'shops:shop_detail' id=shop.id %}">{{ shop.name }}</a></li>
+                    <li><a href="{% url 'shops:shop_detail' id=shop.id %}">{{ shop.name }} 평점: {{shop.average}}</a></li>
                 {% endfor %}
             </ul>
             <!--Please insert recent search list of shops-->
@@ -25,7 +25,7 @@ Mypage
         {% for like_shop in like_shops %}
             <li>
                 <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
-                <form id="jsForm{{like_shop.id}}" action="" onsubmit="clickRate(shop_id={{like_shop.id}}, url='{% url 'users:rate_shop_ajax' %}', current_rating={{like_shop.ratings.all|get_shop_rating:user}}, event)" style="display: none;">
+                <form id="jsForm{{like_shop.id}}" action="" onsubmit="clickRate(shop_id={{like_shop.id}}, url='{% url 'users:rate_shop_ajax' %}', event)" style="display: none;">
                     {% csrf_token %}
                     <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
                     {{ rating_form.as_table }}

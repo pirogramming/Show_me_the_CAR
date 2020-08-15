@@ -14,7 +14,7 @@ class Shop(core_models.TimeStampedModel):
     address = models.CharField(max_length=80, blank=True, null=True)
     homepage = models.URLField(max_length=250, blank=True, null=True)
     phone_number = models.CharField(max_length=80, blank=True, null=True)
-    average = models.IntegerField(blank=True, null=True)
+    average = models.FloatField(blank=True, null=True, default=None)
     like_users = models.ManyToManyField(
         "users.User", related_name="like_shops", blank=True, through="Rating"
     )
@@ -31,7 +31,7 @@ class Shop(core_models.TimeStampedModel):
         number_of_ratings = 0
         for rating in ratings:
             if rating.rating is None:
-                rating.rating = 0
+                continue
             sum_rating += int(rating.rating)
             number_of_ratings += 1
         try:
@@ -41,6 +41,10 @@ class Shop(core_models.TimeStampedModel):
         return avg_rating
 
     get_average_rating.short_description = "Avg. rating"
+
+    def save(self, *args, **kwargs):
+        self.average = self.get_average_rating()
+        super(Shop, self).save(*args, **kwargs)  # Call the real save() method
 
 
 class Rating(core_models.TimeStampedModel):
@@ -54,7 +58,9 @@ class Rating(core_models.TimeStampedModel):
         "shops.Shop", related_name="ratings", on_delete=models.CASCADE
     )
     rating = models.IntegerField(
-        validators=[MaxValueValidator(5), MinValueValidator(1)], blank=True, default=0,
+        validators=[MaxValueValidator(5), MinValueValidator(1)],
+        blank=True,
+        default=None,
     )
 
     def __str__(self):

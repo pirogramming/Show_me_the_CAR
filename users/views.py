@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
 
 from .forms import RatingForm
 from . import models as user_models
@@ -10,7 +11,10 @@ from shops import models as shop_models
 def render_mypage(request):
     user = request.user
     like_shops = user.like_shops.all()
-    best_shops = []
+
+    best_shops = shop_models.Shop.objects.exclude(average=None).order_by("-average")[
+        :10
+    ]
     # rating = user.ratings.all().filter(shop=like_shops)
     # print(like_shops)
     rating_form = RatingForm()
@@ -27,6 +31,7 @@ def render_mypage(request):
 
 @require_POST
 def rate_shop_ajax(request):
+    print(request.POST)
     user = request.user
     shop = shop_models.Shop.objects.get(id=request.POST.get("shop_id"))
     print(user)
@@ -35,6 +40,7 @@ def rate_shop_ajax(request):
     rating = shop_models.Rating.objects.get(user=user, shop=shop)
     rating.rating = my_rating
     rating.save()
+    shop.save()
     print(rating)
     data = {}
     return JsonResponse(data)

@@ -67,14 +67,18 @@ const clickCancelEditRating = (shop_id, el) => {
   form.setAttribute("style", "display: none;");
 };
 
-const clickRate = (shop_id, url, current_rating, el) => {
+const clickRate = (shop_id, url, el) => {
   // Prevent refresh
   el.preventDefault();
   el.target.setAttribute("style", "display: none;");
 
+  // Show Edit rating btn
+  editRatingBtn = document.getElementById(`jsEditRating${shop_id}`);
+  console.log(editRatingBtn);
+  editRatingBtn.setAttribute("style", "display: block;");
+
   // Hide Cancelation btn
   cancelEditRatingBtn = document.getElementById(`jsCancelEditRating${shop_id}`);
-  thisBtn.setAttribute("style", "display: none;");
   cancelEditRatingBtn.setAttribute("style", "display: none;");
 
   // Get csrf token
