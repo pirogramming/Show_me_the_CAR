@@ -25,7 +25,8 @@
     width: 100%;
     align-items: center;
     color: white;
-    margin-top: 3.5rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
 .logout__btn__container button {
@@ -40,4 +41,9 @@
     background-color: rgba(26, 53, 91, 0.5);
     color: white;
     cursor: pointer;
+}
+
+.logout__btn__container button:hover {
+    background-color: rgb(26, 53, 91);
+    transition: 0.6s;
 }

@@ -9,6 +9,11 @@
     {% block css %}
         <link rel="stylesheet" href="{% static 'widgets/rateit/scripts/rateit.css' %}">
     {% endblock %}
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 
 </head>
 <body>
@@ -62,6 +67,6 @@
    <script src="{% static 'js/main.js' %}"></script>
    {% comment %} <script src="{% static 'widgets' %}"></script> {% endcomment %}
    {% block javascript %}
-   {% endblock javascript %}
+   {% endblock %}
 </body>
 </html>

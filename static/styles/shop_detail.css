@@ -10,12 +10,20 @@
   border-bottom: 1px solid gray;
 }
 
+.main__container {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+}
+
 .shop__detail__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 10rem;
     margin-top: 1rem;
+    margin-left: 7.5rem;
 }
 
 .shop__detail__name h1 {
@@ -28,7 +36,6 @@
 }
 
 .shop__detail__list__title {
-    margin-left: 3rem;
     margin-top: 1rem;
 }
 
@@ -63,6 +70,14 @@
     color: rgb(26, 53, 91);
     font-size: 1.1rem;
 }
+
+.map_container {
+    height: auto;
+    width: auto;
+    margin-top: 12.3rem;
+    margin-right: 7.5rem;
+}
+
 
 
  /* Turn on custom 8px wide scrollbar */

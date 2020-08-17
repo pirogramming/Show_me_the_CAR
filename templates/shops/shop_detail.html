@@ -10,36 +10,83 @@
     <link rel="stylesheet" href="{% static 'styles/partials/nav_search.css' %}">
     <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}">
     <link rel="stylesheet" href="{% static 'styles/shop_detail.css' %}">
-    <link rel="stylesheet" href="">
 {% endblock %}
 
 {% block content %}
     <div class="search__detail__title">
         <h1>대리점 조회 결과</h1>
     </div>
-    <div class="shop__detail__container">
-        <div class="shop__detail__name">
-            <h1>{{ shop.name }} 대리점</h1>
+    <div class="main__container">
+        <div class="shop__detail__container">
+            <div class="shop__detail__name">
+                <h1>{{ shop.name }} 대리점</h1>
+                <h1 id="js-address" style="display: none";>{{ shop.address }}</h1>
+            </div>
+            <div class="shop__detail__rating">
+                <h3>평점: ((여기 별 들어감)) {{ average }}</h3>
+            </div>
+            <div class="shop__detail__list__title">
+                <h2>"{{ shop.name }}" 에서 보유중인 모든 차량</h2>
+            </div>
+            <div class="shop__detail__list__container">
+                {% for car in shop.cars.all %}
+                    <div class="shop__detail__list__models">
+                        <i class="fas fa-angle-double-right"></i><a href="{% url 'shops:shop_search_main'%}?car_model={{car.model_name}}">{{car.model_name}}</a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="shop__detail__rating">
-            <h3>평점: ((여기 별 들어감)) {{ average }}</h3>
-        </div>
-        <div class="shop__detail__list__title">
-            <h2>"{{ shop.name }}" 에서 보유중인 모든 차량</h2>
-        </div>
-        <div class="shop__detail__list__container">
-            {% for car in shop.cars.all %}
-                <div class="shop__detail__list__models">
-                    <i class="fas fa-angle-double-right"></i><a href="{% url 'shops:shop_search_main'%}?car_model={{car.model_name}}">{{car.model_name}}</a>
-                </div>
-            {% endfor %}
+        <div class="map_container">
+            <div id="map" style="width:30rem;height:32rem;"></div>
         </div>
     </div>
 
-    <div class="ad_container">
-    </div>
 
 {% endblock content %}
 {% block footer %}
     {% include 'partials/footer.html' %}
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9bee0ef1392ff520d96df2d43d429725&libraries=services"></script>
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        // 지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(document.getElementById('js-address').innerText, function(result, status) {
+
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: '<div style="width:150px;text-align:center;padding:6px 0;">{{ shop.name }}</div>'
+                });
+                infowindow.open(map, marker);
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            }
+        });
+
+    </script>
 {% endblock %}
