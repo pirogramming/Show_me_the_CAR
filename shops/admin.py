@@ -51,3 +51,7 @@ class RatingAdmin(admin.ModelAdmin):
 
     form = RatingForm
 
+
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass

@@ -27,11 +27,9 @@
     {% endif %}
     <div class="login__btn__container">
         {% if user.is_authenticated %}
-
             <button><a href="/accounts/logout">로그아웃</a></button>
             <button><a href="{% url 'users:mypage' %}">마이페이지</a></button>
         {% else %}
-
             <button><a href="{% provider_login_url 'google' %}">구글 로그인하기</a></button>
             <button><a href="{% provider_login_url 'naver' %}">네이버 로그인하기</a><br></button>
         {% endif %}

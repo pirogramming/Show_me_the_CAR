@@ -28,11 +28,11 @@ class ShopSearchView(View):
             if form.is_valid():
                 print("valid")
                 car_model = form.cleaned_data.get("car_model")
-                # city = form.cleaned_data.get("city")
+                city = form.cleaned_data.get("city")
 
                 filter_args = {}
-                # if city != "Anywhere":
-                #     filter_args["city__startswith"] = city
+                if city != "Anywhere":
+                     filter_args["city__startswith"] = city
 
                 if car_model is not None:
                     filter_args["car__model_name__icontains"] = car_model
@@ -108,4 +108,3 @@ def create_comment(request, id):
             comment=comment
         )
     return redirect(reverse('shops:shop_detail', kwargs={'id': id}))
-

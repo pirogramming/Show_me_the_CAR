@@ -55,7 +55,7 @@ class Rating(core_models.TimeStampedModel):
         "users.User", related_name="ratings", on_delete=models.CASCADE, null=True
     )
     shop = models.ForeignKey(
-        "shops.Shop", related_name="ratings", on_delete=models.CASCADE
+        "shops.Shop", related_name="ratings", on_delete=models.CASCADE, null=True
     )
     rating = models.IntegerField(
         validators=[MaxValueValidator(5), MinValueValidator(1)],
@@ -71,3 +71,5 @@ class Comment(core_models.TimeStampedModel):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     comment = models.CharField(max_length=255, verbose_name='comment')
 
+    def __str__(self):
+        return str(self.comment)
