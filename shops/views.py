@@ -97,3 +97,15 @@ def shop_like_ajax(request):
     shop.save()
     data = {}
     return JsonResponse(data)
+
+
+def create_comment(request, id):
+    comment = request.POST.get('comment', None)
+    if comment:
+        shop = get_object_or_404(shops_models.Shop, id=id)
+        shops_models.Comment.objects.create(
+            shop=shop,
+            comment=comment
+        )
+    return redirect(reverse('shops:shop_detail', kwargs={'id': id}))
+

@@ -11,4 +11,5 @@ urlpatterns = [
     path("search_main/", shop_views.ShopSearchView.as_view(), name="shop_search_main"),
     path("search_landing/", shop_views.ShopSearchView.as_view(), name="shop_search_landing"),
     path("like/", shop_views.shop_like_ajax, name="shop_like_ajax"),
+    path("comment/<int:id>/", shop_views.create_comment, name="create_comment"),
 ]

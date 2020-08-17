@@ -66,3 +66,8 @@ class Rating(core_models.TimeStampedModel):
     def __str__(self):
         return str(self.rating)
 
+
+class Comment(core_models.TimeStampedModel):
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=255, verbose_name='comment')
+
