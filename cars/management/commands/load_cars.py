@@ -14,12 +14,12 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         path = kwargs["path"]
         with open(path, "rt") as f:
-            reader = csv.reader(f, dialect="excel")
+            reader = csv.reader(f, dialect={"encoding": "utf-8-sig"})
             for row in reader:
                 try:
                     car = car_models.Car.objects.get(model_name=row[5], color=row[6])
                 except car_models.Car.DoesNotExist:
-                    brand = car_models.Brand.objects.get(name=row[7])
+                    brand = car_models.Brand.objects.get_or_create(name=row[7])
                     car = car_models.Car.objects.create(
                         model_name=row[5], color=row[6], brand=brand
                     )
