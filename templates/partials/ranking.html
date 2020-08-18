@@ -1,0 +1,21 @@
+
+{% if best_shops %}
+    
+<div class="shops__ranking__wrapper">
+  <h3>우수 대리점</h3>
+  <!--Please insert liked list of shops-->
+  <div class="shops__ranking__container">
+    <ul>
+      {% for shop in best_shops %}
+      <li>
+        <a href="{% url 'shops:shop_detail' id=shop.id %}"
+          >{{ shop.name }} 평점: {{shop.average}}</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+    <!--Please insert recent search list of shops-->
+  </div>
+</div>
+
+{% endif %}

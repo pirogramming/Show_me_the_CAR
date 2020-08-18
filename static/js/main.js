@@ -98,9 +98,15 @@ const clickRate = (shop_id, url, el) => {
       my_rating: my_rating,
       csrfmiddlewaretoken: csrftoken,
     },
-    success: (response) => {
-      console.log(response);
-      console.log("success");
+    success: () => {
+      $(".ranking-ajax").html("").load(url);
+      // // Parse json from response
+      // const json = JSON.parse(response);
+      // console.log(json);
+      // json.forEach((model) => {
+      //   console.log(model);
+      // });
+      // console.log("success");
     },
     function(request, status, error) {
       // 통신 실패

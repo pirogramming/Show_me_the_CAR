@@ -8,7 +8,10 @@ Mypage
 
 {% block content %}
     <h1>Profile</h1>
-    <div class="shops__ranking__wrapper">
+    <div class="ranking-ajax">
+        {% include "partials/ranking.html" %}
+    </div>
+    {% comment %} <div class="shops__ranking__wrapper">
         <h3>우수 대리점</h3>
         <!--Please insert liked list of shops-->
         <div class="shops__ranking__container">
@@ -19,7 +22,7 @@ Mypage
             </ul>
             <!--Please insert recent search list of shops-->
         </div>
-    </div>
+    </div> {% endcomment %}
     <div>{{ user.username }}님이 찜한 대리점:</div>
     <ul>
         {% for like_shop in like_shops %}
