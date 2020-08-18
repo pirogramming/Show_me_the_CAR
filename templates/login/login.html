@@ -32,6 +32,7 @@
         {% else %}
             <button><a href="{% provider_login_url 'google' %}">구글 로그인하기</a></button>
             <button><a href="{% provider_login_url 'naver' %}">네이버 로그인하기</a><br></button>
+            <button><a href="{% provider_login_url 'kakao' method='oauth2' %}">카카오 로그인하기</a></button>
         {% endif %}
     </div>
 </div>
