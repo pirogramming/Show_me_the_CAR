@@ -50,4 +50,3 @@ class RatingAdmin(admin.ModelAdmin):
     )
 
     form = RatingForm
-

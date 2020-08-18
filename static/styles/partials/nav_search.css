@@ -30,6 +30,25 @@ nav {
     display: flex;
 }
 
+.search__car {
+    display: flex;
+}
+
+
+.search__car select {
+    height: 2.55rem;
+    width: 8rem;
+    border-radius: 0.2rem;
+    background-color: white;
+    margin-top: 0.4rem;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1.1rem;
+    padding-left: 1rem;
+    padding-top: 0.1rem;
+    color: gray;
+    border: none;
+}
+
 .search__region select {
     height: 2.55rem;
     width: 8rem;

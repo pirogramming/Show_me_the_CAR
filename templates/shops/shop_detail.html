@@ -41,6 +41,19 @@
         </div>
     </div>
 
+    <div class="comment__container">
+        {% for comment in shop.comment_set.all %}
+            <h3>{{ comment.comment }}</h3>
+        {% endfor %}
+    </div>
+
+    <form action="{% url 'shops:create_comment' shop.id %}" method="POST">
+        {% csrf_token %}
+        <label for="comment">익명 후기글</label>
+        <input type="text" name="comment">
+        <button type="submit">등록</button>
+    </form>
+
 
 {% endblock content %}
 {% block footer %}

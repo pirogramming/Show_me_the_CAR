@@ -23,9 +23,9 @@
     </div>
     <div class="search__query">
         {% if query %}
-            <h3><span>{{ query }} </span>를 전시 중인 대리점...</h3>
+            <h3><span>{{ query }}</span><br /><br />모델을 전시 중인 대리점을 클릭해서 조회해보세요!</h3>
         {% else %}
-            <h3><span>검색창 </span>에서 대리점을 검색해주세요!</h3>
+            <h3><span>검색창</span> 에 자동차 모델명을 검색!</h3>
         {% endif %}
 
     </div>
@@ -61,9 +61,7 @@
         {% if shops.has_previous %}
             <a href="{% url 'shops:shop_search_main'%}?car_model={{query}}&/?page={{shops.previous_page_number}}">이전</a>
         {% endif %}
-
         Page {{shops.number}} of {{shops.paginator.num_pages}}
-
         {% if shops.has_next %}
             <a href="{% url 'shops:shop_search_main'%}?car_model={{query}}&/?page={{shops.next_page_number}}">다음</a>
             {% comment %} <a href="?page={{shops.next_page_number}}">다음</a> {% endcomment %}

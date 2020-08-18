@@ -8,7 +8,7 @@
 .search__container {
     display: flex;
     flex-direction: column;
-    background-color: rgba(229, 229, 229, 0.6);    
+    background-color: rgba(229, 229, 229, 0.6);
     width: 20rem;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
     height: 18rem;
@@ -36,6 +36,7 @@
     text-align: center;
 }
 
+/*
 .search__area select {
     width: 90%;
     height: 3rem;
@@ -47,20 +48,36 @@
     padding-left: 0.9rem;
     color: gray;
 }
-
 .search__area select option {
     background-color: white;
+}
+*/
+
+#id_city {
+    width: 90%;
+    height: 3rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    border: none;
+    font-family: "Apple SD Gothic Neo";
+    padding-left: 0.9rem;
+    color: gray;
 }
 
 .search__car input {
     width: 85%;
     height: 2.8rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.8rem;
     border-radius: 0.2rem;
     font-size: 1.2rem;
     border: none;
     font-family: "Apple SD Gothic Neo";
     padding-left: 1rem;
+}
+
+.search__car p {
+    margin: 0;
 }
 
 .search__btn__container {
