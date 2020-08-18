@@ -162,7 +162,7 @@ dmypy.json
 .idea/
 
 # Ignore Migrations
-migrations/
+# migrations/
 
 # Mac OS
 .DS_Store
