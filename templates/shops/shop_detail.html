@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'styles/partials/nav_search.css' %}">
     <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}">
     <link rel="stylesheet" href="{% static 'styles/shop_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/partials/kakao_map_custom_overlay.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -93,16 +94,41 @@
                     position: coords
                 });
 
-                // 인포윈도우로 장소에 대한 설명을 표시합니다
-                var infowindow = new kakao.maps.InfoWindow({
-                    content: '<div style="width:150px;text-align:center;padding:6px 0;">{{ shop.name }}</div>'
+                // 커스텀 오버레이에 표시할 컨텐츠 입니다
+                // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+                // 별도의 이벤트 메소드를 제공하지 않습니다
+                var content = '<div class="wrap">' +
+                            '    <div class="info">' +
+                            '        <div class="title">' +
+                            '            {{ shop.name }}' +
+                            '        </div>' +
+                            '        <div class="body">' +
+                            '            <div class="desc">' +
+                            '                <div class="ellipsis">{{ shop.address }}</div>' +
+                            '                <div class="jibun ellipsis">{{ shop.phone_number }}</div>' +
+                            '            </div>' +
+                            '        </div>' +
+                            '    </div>' +
+                            '</div>';
+
+                // 마커 위에 커스텀오버레이를 표시합니다
+                // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+                var overlay = new kakao.maps.CustomOverlay({
+                    content: content,
+                    map: map,
+                    position: marker.getPosition()
                 });
-                infowindow.open(map, marker);
+
+                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    overlay.setMap(map);
+                });
+
 
                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                 map.setCenter(coords);
+
             }
         });
-
     </script>
 {% endblock %}
