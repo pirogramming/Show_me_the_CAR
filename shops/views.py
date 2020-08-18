@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from django.views.decorators.http import require_POST
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.urls import reverse
 from django.http import Http404, JsonResponse
 from . import forms
@@ -39,7 +39,7 @@ class ShopSearchView(View):
 
                 qs = shops_models.Shop.objects.filter(**filter_args).order_by("created")
 
-                paginator = Paginator(qs, 30, orphans=5)
+                paginator = Paginator(qs, 20, orphans=5)
 
                 page = request.GET.get("/?page", 1)
 
@@ -55,6 +55,7 @@ class ShopSearchView(View):
             "shops": shops,
             "query": query,
         }
+
         return render(request, "shops/search_main.html", context=context)
 
 

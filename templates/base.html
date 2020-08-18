@@ -81,9 +81,15 @@
 
 {# Load javascript #}
 
-   <script src="{% static 'js/main.js' %}"></script>
-   {% comment %} <script src="{% static 'widgets' %}"></script> {% endcomment %}
-   {% block javascript %}
-   {% endblock %}
+    {# infinite scroll #}
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/infinite.min.js' %}"></script>
+
+    {# main javascript #}
+    <script src="{% static 'js/main.js' %}"></script>
+    {% comment %} <script src="{% static 'widgets' %}"></script> {% endcomment %}
+    {% block javascript %}
+    {% endblock %}
 </body>
 </html>
