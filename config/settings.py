@@ -110,7 +110,7 @@ DATABASES = {
         "HOST": os.environ.get("RDS_HOST"),
         "NAME": os.environ.get("RDS_NAME"),
         "USER": os.environ.get("RDS_USER"),
-        "PASSWORD": "Bogota_piro13!",
+        "PASSWORD": os.environ.get("RDS_PASSWORD"),
         "PORT": "5432",
     }
 }
