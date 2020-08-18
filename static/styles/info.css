@@ -110,6 +110,12 @@ hr.line1 {
   font-size: 1.2rem;
 }
 
+.team_container {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8rem 0 8rem;
+}
 
 .text_team {
   margin-left: 5.5rem;
@@ -119,13 +125,13 @@ hr.line1 {
 }
 
 .team_photo img {
-  width: 14rem;
-  height: 14rem;
+  width: 10rem;
+  height: auto;
 }
 
 .team_photo_three img {
-  width: 16rem;
-  height: 14.3rem;
+  width: 11rem;
+  height: auto;
 }
 
 .name {
@@ -134,12 +140,14 @@ hr.line1 {
   font-size: 1.4rem;
 }
 
-.team_container {
-  display: flex;
-  margin-left: 3rem;
-  margin-bottom: 6rem;
-}
-
 .team_box {
   text-align: center;
+}
+
+.team_box:nth-child(1) p {
+  margin-top: 1rem;
+}
+
+.team_box:nth-child(3) p {
+  margin-top: 0.2rem;
 }
