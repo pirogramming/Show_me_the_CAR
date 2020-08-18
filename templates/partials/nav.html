@@ -1,10 +1,14 @@
-  <a href="/">Show Me The Car</a>
-  
-  {% if not user.is_authenticated %} 
-  {% block login_block %}
-  <ul>
-    <li><a href="{% url 'login:login_page' %}">Login</a></li>
-  </ul>
-  {% endblock login_block %}
-  {% endif %}
-    
+{% load static %}
+<!-- navigation bar for landing page -->
+
+<nav>
+    <div class="nav__bar__container">
+        <div class="logo">
+            <a href="{% url 'core:home' %}"><img src="{% static 'images/logo_white.png' %}" alt="logo"></a>
+
+        </div>
+        <div class="about">
+            <a href="{% url 'core:about_us' %}"><span>서비스 소개</span></a>
+        </div>
+    </div>
+</nav>

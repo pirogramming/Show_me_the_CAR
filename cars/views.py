@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import Http404
 from cars import models as cars_models
 from shops import models as shops_models
+from shops import urls
 
 
 def car_list(request):
@@ -23,3 +25,4 @@ def car_detail(request, pk):
         return render(request, "cars/car_detail.html", context=context)
     except cars_models.Car.DoesNotExist:
         raise Http404()
+

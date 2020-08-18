@@ -13,6 +13,7 @@ class ShopAdmin(admin.ModelAdmin):
         "phone_number",
         "city",
         "region",
+        "address",
         "count_cars",
         "get_average_rating",
     ]
@@ -49,4 +50,3 @@ class RatingAdmin(admin.ModelAdmin):
     )
 
     form = RatingForm
-

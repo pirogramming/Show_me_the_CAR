@@ -1,0 +1,160 @@
+.main__container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.search__container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(229, 229, 229, 0.6);
+    width: 20rem;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+    height: 18rem;
+    border-radius: 0.2rem;
+    margin-left: 4rem;
+    line-height: 100%;
+    margin-top: 7rem;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    0%{opacity:0.1;}
+    100%{opacity:1;}
+}
+
+.search__container h2 {
+    text-align: left;
+    padding: 2rem 1.5rem;
+    margin: 0;
+    color: rgb(26, 53, 91);
+
+}
+
+.search__container__form {
+    text-align: center;
+}
+
+/*
+.search__area select {
+    width: 90%;
+    height: 3rem;
+    margin-bottom: 0.8rem;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    border: none;
+    font-family: "Apple SD Gothic Neo";
+    padding-left: 0.9rem;
+    color: gray;
+}
+.search__area select option {
+    background-color: white;
+}
+*/
+
+#id_city {
+    width: 90%;
+    height: 3rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    border: none;
+    font-family: "Apple SD Gothic Neo";
+    padding-left: 0.9rem;
+    color: gray;
+}
+
+.search__car input {
+    width: 85%;
+    height: 2.8rem;
+    margin-bottom: 1.8rem;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    border: none;
+    font-family: "Apple SD Gothic Neo";
+    padding-left: 1rem;
+}
+
+.search__car p {
+    margin: 0;
+}
+
+.search__btn__container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.search__btn__container a {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333D4B;
+}
+
+.search__btn__container a:hover {
+    color: white;
+}
+
+.search__btn__container button {
+    height: 3rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    font-family: "Apple SD Gothic Neo";
+    border-radius: 0.2rem;
+    color: #333D4B;
+    cursor: pointer;
+    padding: 0 1.2rem;
+}
+
+.search__btn__container button:hover {
+    color: white;
+}
+
+.slogan__container {
+    color: white;
+    margin-right: 4rem;
+    height: 18rem;
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.slogan__container h1{
+    line-height: 100%;
+    margin-bottom: 2rem;
+}
+
+.slogan__container h3 {
+    margin: 0.8rem;
+}
+
+.slogan__container h1, .slogan__container h3 {
+    -webkit-animation-name: Floatingx;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-name: Floating;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: ease-in-out;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+@-webkit-keyframes Floatingx {
+    from {-webkit-transform:translate(0, 0px);}
+    65% {-webkit-transform:translate(0, 15px);}
+    to {-webkit-transform: translate(0, -0px);}
+}
+
+@-moz-keyframes Floating {
+    from {-moz-transform:translate(0, 0px);}
+    65% {-moz-transform:translate(0, 15px);}
+    to {-moz-transform: translate(0, -0px);}
+}

@@ -1,0 +1,46 @@
+.login__container {
+    text-align: center;
+    background-color:white;
+    border-radius: 0.2rem;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+    width: 24rem;
+    height: 20rem;
+    margin: 6rem auto;
+    color: #333D4B;
+    padding: 2rem 0 1rem 0;
+}
+
+.login__container h1 {
+    color: rgb(26, 53, 91);
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+
+.login__container h4 {
+    color: black;
+}
+
+.login__btn__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    color: white;
+}
+
+.login__btn__container button {
+    margin: 1rem 0 1rem 0;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 0.2rem;
+    border: none;
+    font-family: "Apple SD Gothic Neo";
+    font-size: 1rem;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(26, 53, 91, 0.5);
+}
+
+.login__btn__container a {
+    color: white;
+}
+

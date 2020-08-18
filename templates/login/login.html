@@ -1,27 +1,38 @@
-{% extends 'base.html' %}
+{% extends "base.html"%}
+
+{% load static %}
 {% load socialaccount %}
 
 {% block page_name %}
-    Login
-{% endblock page_name %}
+    로그인{{ block.super }}
+{% endblock %}
 
-{% block login_block %}
-{% endblock login_block %}
-{% block search-bar %}
-{% endblock search-bar %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/partials/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    {{ block.super }}
+{% endblock %}
+
+{% block nav %}
+    {% include "partials/nav.html" %}
+{% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
-    {% comment %} <a href = "/accounts/signup">회원가입</a><br> {% endcomment %}
-    {% comment %} <a href = "/accounts/login">로그인</a><br> {% endcomment %}
-
+<div class="login__container">
+    <h1>로그인</h1>
     {% if user.is_authenticated %}
-        <a href = "/accounts/logout">로그아웃</a>
-        {{user.username}} 님이 로그인중 <br>
-        <a href="{% url 'users:mypage' %}">마이페이지</a>
+        <h4>{{user.username}} 님 안녕하세요!</h4>
     {% else %}
-        <a href="{% provider_login_url 'google' %}">Google 로그인</a><br>
-        <a href="{% provider_login_url 'naver' %}">네이버 로그인</a><br>
-        로그인 하셔야 합니다.
+        <h4>로그인해서 대리점을 찜해보세요!</h4>
     {% endif %}
-{% endblock content %}
+    <div class="login__btn__container">
+        {% if user.is_authenticated %}
+            <button><a href="/accounts/logout">로그아웃</a></button>
+            <button><a href="{% url 'users:mypage' %}">마이페이지</a></button>
+        {% else %}
+            <button><a href="{% provider_login_url 'google' %}">구글 로그인하기</a></button>
+            <button><a href="{% provider_login_url 'naver' %}">네이버 로그인하기</a><br></button>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

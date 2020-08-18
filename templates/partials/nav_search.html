@@ -1,0 +1,27 @@
+{% load static %}
+
+<!-- navigation bar for search page -->
+<nav>
+    <div class="nav__bar__container">
+        <div class="logo">
+            <a href="{% url 'core:home' %}"><img src="{% static 'images/logo_white.png' %}" alt="logo" /></a>
+        </div>
+        <form action="" class="search__container">
+
+            <div class="search__car">
+                {{ form.as_p }}
+            </div>
+        </form>
+
+        <div class="searchpage">
+            <a href="{% url 'shops:shop_search_main' %}"><span>검색 페이지</span></a>
+        </div>
+        <div class="mypage">
+            {% if user.is_authenticated %}
+                <a href="{% url 'users:mypage' %}"><span>마이 페이지</span></a>
+            {% else %}
+                <a href="{% url 'login:login_page' %}"><span>로그인</span></a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

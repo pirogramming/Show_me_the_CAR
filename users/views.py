@@ -12,7 +12,6 @@ from shops import models as shop_models
 def render_mypage(request):
     user = request.user
     like_shops = user.like_shops.all()
-
     best_shops = shop_models.Shop.objects.exclude(average=None).order_by("-average")[
         :10
     ]
@@ -20,6 +19,8 @@ def render_mypage(request):
     # print(like_shops)
     rating_form = RatingForm()
     # print(rating_form)
+
+
     ctx = {
         "user": user,
         "like_shops": like_shops,

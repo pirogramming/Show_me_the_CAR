@@ -17,7 +17,5 @@ class RateShopWidget(widgets.NumberInput):
 
     def build_attrs(self, *args, **kwargs):
         attrs = super().build_attrs(*args, **kwargs)
-
         attrs.update({"min": 0, "max": 5, "step": 1, "style": "display: none;"})
-
         return attrs

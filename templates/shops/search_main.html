@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_name %}
+    대리점 검색{{ block.super }}
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/partials/nav_search.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/search_main.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}">
+{% endblock %}
+
+{% block nav %}
+    {% include "partials/nav_search.html" with form=form %}
+{% endblock %}
+
+{% block content %}
+    <div class="search__title">
+        <h1>검색 결과</h1>
+    </div>
+    <div class="search__query">
+        {% if query %}
+            <h3><span>{{ query }}</span><br /><br />모델을 전시 중인 대리점을 클릭해서 조회해보세요!</h3>
+        {% else %}
+            <h3><span>검색창</span> 에 자동차 모델명을 검색!</h3>
+        {% endif %}
+
+    </div>
+    <!--main container 시작-->
+    <div class="main_content">
+        <div class="left_container">
+            {% for shop in shops %}
+                <div>
+                    <!-- 좋아요 기능, user가 heart를 눌렀을 때, 대리점의 like_users list에 있으면 list에서 삭제되고 없으면 추가된다 -->
+
+                    {% if user in shop.like_users.all %}
+                        <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="liked" class="" id=like-button{{shop.pk}}>
+                        <i class="fas fa-heart"></i>
+                        </button>
+                    {% else %}
+                        <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="not_liked" class="" id=like-button{{shop.pk}}>
+                        <i class="far fa-heart"></i>
+                        </button>
+                    {% endif %}
+                    <div class="left__container__shop__name">
+                        <a href="{% url 'shops:shop_detail' shop.id %}">{{ shop.name }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="right_container">
+            <!-- 카카오 지도 -->
+            <div id="map" style="width:100%;height:100%;"></div>
+        </div>
+    </div>
+    <!--
+    <h5>
+        {% if shops.has_previous %}
+            <a href="{% url 'shops:shop_search_main'%}?car_model={{query}}&/?page={{shops.previous_page_number}}">이전</a>
+        {% endif %}
+        Page {{shops.number}} of {{shops.paginator.num_pages}}
+        {% if shops.has_next %}
+            <a href="{% url 'shops:shop_search_main'%}?car_model={{query}}&/?page={{shops.next_page_number}}">다음</a>
+            {% comment %} <a href="?page={{shops.next_page_number}}">다음</a> {% endcomment %}
+        {% endif %}
+    </h5>-->
+    <!--footer-->
+{% endblock %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}
