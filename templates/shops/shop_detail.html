@@ -41,13 +41,6 @@
         </div>
     </div>
 
-    <div class="comment__container">
-        {% for comment in shop.comment_set.all %}
-            <h3>{{ comment.comment }}</h3>
-        {% endfor %}
-    </div>
-
-
 {% endblock content %}
 {% block footer %}
     {% include 'partials/footer.html' %}
