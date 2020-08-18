@@ -47,13 +47,6 @@
         {% endfor %}
     </div>
 
-    <form action="{% url 'shops:create_comment' shop.id %}" method="POST">
-        {% csrf_token %}
-        <label for="comment">익명 후기글</label>
-        <input type="text" name="comment">
-        <button type="submit">등록</button>
-    </form>
-
 
 {% endblock content %}
 {% block footer %}
