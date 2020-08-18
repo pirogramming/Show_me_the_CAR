@@ -33,13 +33,15 @@
                 <!--Please insert liked list of shops-->
                 <div class="shops__ranking__container">
                     <ul>
-                        <li><a href="">this is shop ranking list</a></li>
+                        {% for shop in best_shops %}
+                            <li><a href="{% url 'shops:shop_detail' id=shop.id %}">{{ shop.name }} 평균평점: {{shop.average}}</a></li>
+                        {% endfor %}
                     </ul>
                     <!--Please insert recent search list of shops-->
                 </div>
             </div>
             <div class="recent__search__wrapper">
-                <h3>최근 검색</h3>
+                <h3>시승 링크</h3>
                 <div class="recent__search__container">
                     <ul>
                         <li><a href="">this is recent search list</a></li>

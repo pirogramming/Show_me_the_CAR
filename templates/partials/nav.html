@@ -9,6 +9,9 @@
         </div>
         <div class="about">
             <a href="{% url 'core:about_us' %}"><span>서비스 소개</span></a>
+            {% if user.is_authenticated %}
+            <a href="/accounts/logout"><span>로그아웃</span></a>
+            {% endif %}
         </div>
     </div>
 </nav>
