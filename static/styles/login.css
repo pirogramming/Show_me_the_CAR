@@ -37,6 +37,7 @@
     font-family: "Apple SD Gothic Neo";
     font-size: 1rem;
     background-color: rgba(26, 53, 91, 0.5);
+    cursor: pointer;
 }
 
 .login__btn__container button:hover {

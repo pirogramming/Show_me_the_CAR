@@ -47,9 +47,9 @@
             <button><a href="/accounts/logout">로그아웃</a></button>
             <button><a href="{% url 'users:mypage' %}">마이페이지</a></button>
         {% else %}
-            <button class='btn-social-login' style='background:#D93025'><a href="{% provider_login_url 'google' %}"><i class="xi-2x xi-google"></i></a></button>
-            <button class='btn-social-login' style='background:#1FC700'><a href="{% provider_login_url 'naver' %}"><i class="xi-2x xi-naver"></i></a></button>
-            <button class='btn-social-login' style='background:#FFEB00'><a href="{% provider_login_url 'kakao' method='oauth2' %}"><i class="xi-2x xi-kakaotalk text-dark"></i></a></button>
+            <a href="{% provider_login_url 'google' %}"><button class='btn-social-login' style='background:#D93025'><i class="xi-2x xi-google"></i></button></a>
+            <a href="{% provider_login_url 'naver' %}"><button class='btn-social-login' style='background:#1FC700'><i class="xi-2x xi-naver"></i></button></a>
+            <a href="{% provider_login_url 'kakao' method='oauth2' %}"><button class='btn-social-login' style='background:#FFEB00'><i class="xi-2x xi-kakaotalk text-dark"></i></button></a>
         {% endif %}
     </div>
 </div>
