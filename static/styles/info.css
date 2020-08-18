@@ -104,6 +104,12 @@ hr.line1 {
   background-color: #e5e5e599;
 }
 
+.service_detail:hover {
+  background-color: white;
+  transition: 0.8s;
+  font-size: 1.2rem;
+}
+
 
 .text_team {
   margin-left: 5.5rem;
