@@ -74,8 +74,9 @@
   display: inline-block;
 }
 
+/* (600*300) 광고 넣을 공간 */
 .right_container {
-  background-color: rgba(229, 229, 229, 0.3);
+  background-color: transparent;
   height: 600px;
   width: 300px;
 }

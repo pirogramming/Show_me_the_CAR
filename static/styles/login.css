@@ -12,7 +12,7 @@
 
 .login__container h1 {
     color: rgb(26, 53, 91);
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     margin-top: 1rem;
 }
 
@@ -29,15 +29,19 @@
 }
 
 .login__btn__container button {
-    margin: 1rem 0 1rem 0;
+    margin: 0.3rem 0 0.3rem 0;
     width: 20rem;
     height: 3rem;
     border-radius: 0.2rem;
     border: none;
     font-family: "Apple SD Gothic Neo";
     font-size: 1rem;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     background-color: rgba(26, 53, 91, 0.5);
+}
+
+.login__btn__container button:hover {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+    transition: 0.4s;
 }
 
 .login__btn__container a {

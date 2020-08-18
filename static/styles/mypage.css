@@ -96,8 +96,9 @@
     width: 95%;
 }
 
+/* (336*280) 사이즈 광고 넣을 공간 */
 .ad__banner {
-    background-color: rgba(229, 229, 229, 0.3);
+    background-color: transparent;
     margin-left: 4.5rem;
     margin-top: 1rem;
     width: 336px;
@@ -173,11 +174,22 @@
     border-radius: 0.2rem;
     height: 1.5rem;
     margin-top: 0.3rem;
+    cursor: pointer;
+}
+
+.rating__container button:hover {
+    background-color: #1a355b;
+    transition: 0.4s;
 }
 
 .rating__form button {
-    background-color: gold;
+    background-color: goldenrod;
     height: 1.5rem;
+}
+
+.rating__form button:hover {
+    background-color: gold;
+    transition: 0.4s;
 }
 
 .rating__container form {
