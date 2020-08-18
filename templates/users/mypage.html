@@ -28,27 +28,23 @@
     <!--Liked shops list-->
     <div class="main__container">
         <div class="left__container">
-            <div class="recent__search__wrapper">
-                <h3>시승 링크</h3>
-                <div class="recent__search__container">
-                    <ul>
-                        <li><a href="https://www.genesis.com/kr/ko/genesis-test-drive.html" target="_blank">제네시스 시승 신청</a></li>
-                        <li><a href="https://www.hyundai.com/kr/ko/e/vehicles/test-driving" target="_blank">현대 자동차 시승 신청</a></li>
-                        <li><a href="https://www.kia.com/kr/experience-center/test-service/default.html" target="_blank">기아 자동차 시승 신청</a></li>
-                        <li><a href="chevrolet.co.kr/purchase/test-drive.gm" target="_blank">쉐보레 시승 신청</a></li>
-                        <li><a href="http://www.smotor.com/kr/purchase/td_center/newcar/index.html" target="_blank">쌍용 자동차 시승 신청</a></li>
-                        <li><a href="https://www.renaultsamsungm.com/new/side/app_testdrive.jsp" target="_blank">르노 삼성 시승 신청</a></li>
-                    </ul>
-                    <!--Please insert ranking of the shops-->
+            <div class="brand__link__wrapper">
+                <h3>시승 신청 바로가기</h3>
+                <div class="brand__link__container">
+                    <!-- <li><a href="https://www.genesis.com/kr/ko/genesis-test-drive.html" target="_blank">제네시스</a></li> -->
+                    <div><a href="https://www.hyundai.com/kr/ko/e/vehicles/test-driving" target="_blank">현대 자동차</a></div>
+                    <div><a href="https://www.kia.com/kr/experience-center/test-service/default.html" target="_blank">기아 자동차</a></div>
+                    <div><a href="https://www.chevrolet.co.kr/purchase/test-drive.gm" target="_blank">쉐보레</a></div>
+                    <div><a href="http://www.smotor.com/kr/purchase/td_center/newcar/index.html" target="_blank">쌍용 자동차</a></div>
+                    <div><a href="https://www.renaultsamsungm.com/new/side/app_testdrive.jsp" target="_blank">르노 삼성</a></div>
                 </div>
             </div>
             <div class="shops__ranking__wrapper">
                 <h3>우수 대리점</h3>
-                <!--Please insert liked list of shops-->
                 <div class="shops__ranking__container">
-                    <ul>
-                        {% for shop in best_shops %}
-                            <li><a href="{% url 'shops:shop_detail' id=shop.id %}">{{ shop.name }} 평균평점: {{shop.average}}</a></li>
+                    {% for shop in best_shops %}
+                        <div>
+                            <h4><a href="{% url 'shops:shop_detail' id=shop.id %}">{{ shop.name }}</a></h4>
                             {% if 0 <= shop.average and shop.average < 1 %}
                                 <h3><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></h3>
                             {% elif 1 <= shop.average and shop.average < 2 %}
@@ -62,9 +58,8 @@
                             {% elif 5 == shop.average %}
                                 <h3><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h3>
                             {% endif %}
-                        {% endfor %}
-                    </ul>
-                    <!--Please insert recent search list of shops-->
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

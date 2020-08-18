@@ -32,7 +32,7 @@ class ShopSearchView(View):
 
                 filter_args = {}
                 if city != "Anywhere":
-                    filter_args["city__startswith"] = city
+                    filter_args["city__icontains"] = city
 
                 if car_model is not None:
                     filter_args["car__model_name__icontains"] = car_model
