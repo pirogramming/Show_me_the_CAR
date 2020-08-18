@@ -29,8 +29,8 @@
 
 .left_container {
   background-color: rgba(229, 229, 229, 0.3);
-  height: 30rem;
-  width: 38%;
+  height: 536px;
+  width: 60%;
   overflow: scroll;
   overflow-x: hidden;
   border-radius: 0.2rem;
@@ -74,10 +74,11 @@
   display: inline-block;
 }
 
+/* (600*300) 광고 넣을 공간 */
 .right_container {
-  background-color: rgba(229, 229, 229, 0.3);
-  height: 34rem;
-  width: 58%;
+  background-color: transparent;
+  height: 600px;
+  width: 300px;
 }
 
     /* Turn on custom 8px wide scrollbar */

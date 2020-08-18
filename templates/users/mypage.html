@@ -28,53 +28,71 @@
     <!--Liked shops list-->
     <div class="main__container">
         <div class="left__container">
-            <div class="shops__ranking__wrapper">
-                <h3>우수 대리점</h3>
-                <!--Please insert liked list of shops-->
-                <div class="shops__ranking__container">
-                    <ul>
-                        {% for shop in best_shops %}
-                            <li><a href="{% url 'shops:shop_detail' id=shop.id %}">{{ shop.name }} 평균평점: {{shop.average}}</a></li>
-                        {% endfor %}
-                    </ul>
-                    <!--Please insert recent search list of shops-->
+        <div class="link__ranking__container">
+            <div class="brand__link__wrapper">
+                <h3>시승 신청 바로가기</h3>
+                <div class="brand__link__container">
+                    <!-- <li><a href="https://www.genesis.com/kr/ko/genesis-test-drive.html" target="_blank">제네시스</a></li> -->
+                    <div><a href="https://www.hyundai.com/kr/ko/e/vehicles/test-driving" target="_blank">현대 자동차</a></div>
+                    <div><a href="https://www.kia.com/kr/experience-center/test-service/default.html" target="_blank">기아 자동차</a></div>
+                    <div><a href="https://www.chevrolet.co.kr/purchase/test-drive.gm" target="_blank">쉐보레</a></div>
+                    <div><a href="http://www.smotor.com/kr/purchase/td_center/newcar/index.html" target="_blank">쌍용 자동차</a></div>
+                    <div><a href="https://www.renaultsamsungm.com/new/side/app_testdrive.jsp" target="_blank">르노 삼성</a></div>
                 </div>
             </div>
-            <div class="recent__search__wrapper">
-                <h3>최근 검색</h3>
-                <div class="recent__search__container">
-                    <ul>
-                        <li><a href="">this is recent search list</a></li>
-                    </ul>
-                    <!--Please insert ranking of the shops-->
+            <div class="shops__ranking__wrapper">
+                <h3>우수 대리점</h3>
+                <div class="shops__ranking__container">
+                    {% for shop in best_shops %}
+                        <div>
+                            <h4><a href="{% url 'shops:shop_detail' id=shop.id %}">{{ shop.name }}</a></h4>
+                            {% if 0 <= shop.average and shop.average < 1 %}
+                                <h3><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></h3>
+                            {% elif 1 <= shop.average and shop.average < 2 %}
+                                <h3><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></h3>
+                            {% elif 2 <= shop.average and shop.average < 3 %}
+                                <h3><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></h3>
+                            {% elif 3 <= shop.average and shop.average < 4 %}
+                                <h3><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></h3>
+                            {% elif 4 <= shop.average and shop.average < 5 %}
+                                <h3><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></h3>
+                            {% elif 5 == shop.average %}
+                                <h3><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h3>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                 </div>
+            </div>
+        </div>
+            <!--ad banner-->
+            <div class="ad__banner">
             </div>
         </div>
         <div class="right__container__wrapper">
             <h3>{{ user.username }}님이 찜한 대리점</h3>
             <div class="right__container">
                 {% for like_shop in like_shops %}
-                    <div>
+                    <div class="right__shop__container">
                         <div class="right__container__shop__name">
                             <a href="{% url 'shops:shop_detail' id=like_shop.id %}">{{ like_shop.name }}</a>
                         </div>
-                        <form id="jsForm{{like_shop.id}}" action="" onsubmit="clickRate(shop_id={{like_shop.id}}, url='{% url 'users:rate_shop_ajax' %}', event)" style="display: none;">
-                            {% csrf_token %}
-                            <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
-                            {{ rating_form.as_table }}
-                            <button class="jsRateBtn" type="submit">평가하기</button>
-                        </form>
-                        <div>내가 준 별점: <span id="jsMyRating{{like_shop.id}}">{{like_shop.ratings.all|get_shop_rating:user}}</span></div>
-                        <button onclick="clickEditRating(shop_id={{like_shop.id}}, event)" id="jsEditRating{{like_shop.id}}">수정하기</button>
-                        <button onclick="clickCancelEditRating(shop_id={{like_shop.id}}, event)" id="jsCancelEditRating{{like_shop.id}}" style="display: none;">취소</button>
+                        <div class="rating__container">
+                            <form class="rating__form " id="jsForm{{like_shop.id}}" action="" onsubmit="clickRate(shop_id={{like_shop.id}}, url='{% url 'users:rate_shop_ajax' %}', event)" style="display: none;">
+                                {% csrf_token %}
+                                <input type="hidden" name="shop_id" value="{{ like_shop.id }}"/>
+                                {{ rating_form.as_table }} <br />
+                                <button class="jsRateBtn rate_button" type="submit">별점 주기</button>
+                            </form>
+                            <div>내가 준 별점: <span id="jsMyRating{{like_shop.id}}">{{like_shop.ratings.all|get_shop_rating:user}}</span></div>
+                            <button class="edit_button" onclick="clickEditRating(shop_id={{like_shop.id}}, event)" id="jsEditRating{{like_shop.id}}">수정하기</button>
+                            <button class="cancel_button" onclick="clickCancelEditRating(shop_id={{like_shop.id}}, event)" id="jsCancelEditRating{{like_shop.id}}" style="display: none;">취소</button>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
-    <!--ad banner-->
-    <div class="search__banner">
-    </div>
+
 {% endblock %}
 {% block footer %}
     {% include "partials/footer.html" %}

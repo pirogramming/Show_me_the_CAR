@@ -61,6 +61,7 @@ class Rating(core_models.TimeStampedModel):
         validators=[MaxValueValidator(5), MinValueValidator(1)],
         blank=True,
         default=None,
+        null=True,
     )
 
     def __str__(self):

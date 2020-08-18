@@ -81,9 +81,10 @@
 
 {# Load javascript #}
 
-   <script src="{% static 'js/main.js' %}"></script>
-   {% comment %} <script src="{% static 'widgets' %}"></script> {% endcomment %}
-   {% block javascript %}
-   {% endblock %}
+    {# main javascript #}
+    <script src="{% static 'js/main.js' %}"></script>
+    {% comment %} <script src="{% static 'widgets' %}"></script> {% endcomment %}
+    {% block javascript %}
+    {% endblock %}
 </body>
 </html>

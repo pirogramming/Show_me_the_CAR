@@ -1,4 +1,3 @@
-
 .mypage__title {
     display: flex;
     justify-content: center;
@@ -21,35 +20,93 @@
     text-align: center;
 }
 
-.left__container {
+.link__ranking__container {
     display: flex;
     justify-content: space-evenly;
 }
 
-.shops__ranking__container {
+.brand__link__container {
     height: 18rem;
+    width: 10rem;
     border-radius: 0.2rem;
     background-color: rgba(229, 229, 229, 0.3);
     overflow: scroll;
     overflow-x: hidden;
     padding: 1rem;
     margin-right: 0.5rem;
-
+    margin-left: 1rem;
 }
 
-.recent__search__container {
+.brand__link__container > div:nth-child(1) {
+    border-top: 1px solid lightgray;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.brand__link__container > div {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    width: 95%;
+}
+
+.brand__link__container a {
+    text-decoration: none;
+    color: #1a355b;
+}
+
+.shops__ranking__container {
     height: 18rem;
+    width: 14rem;
     border-radius: 0.2rem;
     background-color: rgba(229, 229, 229, 0.3);
     overflow: scroll;
     overflow-x: hidden;
     padding: 1rem;
     margin-right: 0.5rem;
+}
 
+.shops__ranking__container a {
+    text-decoration: none;
+    color: #1a355b;
+}
+
+.shops__ranking__container h4 {
+    margin: 0;
+}
+
+.shops__ranking__container h3 {
+    color: gold;
+    margin: 0.5rem 0 0 0;
+    text-align: left;
+}
+
+.shops__ranking__container > div:nth-child(1) {
+    border-top: 1px solid lightgray;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.shops__ranking__container > div {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    width: 95%;
+}
+
+/* (336*280) 사이즈 광고 넣을 공간 */
+.ad__banner {
+    background-color: transparent;
+    margin-left: 4.5rem;
+    margin-top: 1rem;
+    width: 336px;
+    height: 280px;
 }
 
 .right__container {
-    height: 30rem;
+    height: 34.5rem;
     width: 34rem;
     border-radius: 0.2rem;
     background-color: rgba(229, 229, 229, 0.3);
@@ -72,6 +129,12 @@
     width: 95%;
 }
 
+.right__shop__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .my_rating {
     font-size: 1rem;
     margin-left: 1rem;
@@ -80,17 +143,57 @@
 
 .right__container__shop__name {
     margin-bottom: 0.5rem;
+    width: 10rem;
+    height: 2rem;
 }
 
 .right__container__shop__name a {
     color: rgb(26, 53, 91);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-left: 1rem;
+    line-height: 2rem;
 }
 
 .right__container form {
     margin-left: 1rem;
+}
+
+.rating__container {
+    width: 10rem;
+}
+
+.rating__form {
+    margin-bottom: 1rem;
+}
+
+.rating__container button {
+    border: none;
+    background-color: #84cdee;
+    color: white;
+    border-radius: 0.2rem;
+    height: 1.5rem;
+    margin-top: 0.3rem;
+    cursor: pointer;
+}
+
+.rating__container button:hover {
+    background-color: #1a355b;
+    transition: 0.4s;
+}
+
+.rating__form button {
+    background-color: goldenrod;
+    height: 1.5rem;
+}
+
+.rating__form button:hover {
+    background-color: gold;
+    transition: 0.4s;
+}
+
+.rating__container form {
+    margin-left: 0;
 }
 
 /* Turn on custom 8px wide scrollbar */

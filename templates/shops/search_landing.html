@@ -22,8 +22,15 @@
                     {{ form.as_p }}
                 </div>
                 <div class="search__btn__container">
-                    <span><a href="{% url 'login:login_page' %}">로그인</a></span>
-                    <button>검색</button>
+                    {% if user.is_authenticated %}
+                        <span><a href="{% url 'users:mypage' %}">마이페이지</a></span>
+
+                    {% else %}
+                        <span><a href="{% url 'login:login_page' %}">로그인</a></span>
+
+                    {% endif %}
+                        <button>검색</button>
+
                 </div>
             </form>
         </div>

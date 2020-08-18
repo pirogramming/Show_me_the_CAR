@@ -67,6 +67,35 @@ const clickCancelEditRating = (shop_id, el) => {
   form.setAttribute("style", "display: none;");
 };
 
+const ratingToStars = (my_rating) => {
+  const starContainer = document.querySelector("id", "jsStarContainer");
+  const starElement = document.createElement("h3");
+  starElement.setAttribute("class", "jsStarElement");
+  const solidStar = document.createElement("i");
+  solidStar.setAttribute("class", "fas fa-star");
+  const emptyStar = document.createElement("i");
+  emptyStar.setAttribute("class", "far fa-star");
+
+  starElement.appendChild(emptyStar);
+  console.log(starElement)
+
+  // for(let i=1; i<=5; i++){
+  //   starContainer.appendChild(starElement);
+  //   starContainer.appendChild(starElement);
+  //   starContainer.appendChild(starElement);
+    // console.log(starContainer)
+  // }
+  for(let i=1; i<=my_rating; i++){
+    const element = starContainer.querySelector(".jsStarElement");
+    element.replaceChild(solidStar, element.firstChild);
+  }
+  console.log(starContainer.outerHTML)
+  return starContainer.outerHTML;
+
+
+
+}
+
 const clickRate = (shop_id, url, el) => {
   // Prevent refresh
   el.preventDefault();
