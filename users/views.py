@@ -47,9 +47,3 @@ def rate_shop_ajax(request):
     best_shops = serializers.serialize("json", qs)
     return JsonResponse(best_shops, safe=False)
 
-
-def kakao_login(request):
-    return redirect(
-        f"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}"
-    )
-

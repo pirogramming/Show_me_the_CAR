@@ -29,7 +29,7 @@ urlpatterns = [
     # login
     path("login/", include("login.urls", namespace="login")),
     # accounts
-    path("accounts/", include("allauth.urls")),
+    # path("accounts/", include("allauth.urls")),
     # users
     path("users/", include("users.urls", namespace="users")),
     # search

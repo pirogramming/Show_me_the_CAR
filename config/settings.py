@@ -33,18 +33,18 @@ ALLOWED_HOSTS = ["*"]
 DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
-    "django.contrib.sites",  # login
+    # "django.contrib.sites",  # login
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.forms",  # widgets
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
-    "allauth.socialaccount.providers.naver",
-    "allauth.socialaccount.providers.kakao",
+    # "allauth",
+    # "allauth.account",
+    # "allauth.socialaccount",
+    # "allauth.socialaccount.providers.google",
+    # "allauth.socialaccount.providers.naver",
+    # "allauth.socialaccount.providers.kakao",
 ]
 
 PROJECT_APPS = [
@@ -142,13 +142,13 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = "users.User"
 
-AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
+# AUTHENTICATION_BACKENDS = (
+#     "django.contrib.auth.backends.ModelBackend",
+#     "allauth.account.auth_backends.AuthenticationBackend",
+# )
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = "/"
+# LOGIN_REDIRECT_URL = "/"
 
 # users/models.py avatar
 MEDIA_URL = "/media/"

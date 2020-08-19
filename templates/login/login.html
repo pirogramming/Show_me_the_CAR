@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 
 {% load static %}
-{% load socialaccount %}
+{% comment %} {% load socialaccount %} {% endcomment %}
 
 {% block page_name %}
     로그인{{ block.super }}
@@ -47,9 +47,9 @@
             <button><a href="/accounts/logout">로그아웃</a></button>
             <button><a href="{% url 'users:mypage' %}">마이페이지</a></button>
         {% else %}
-            <a href="{% provider_login_url 'google' %}"><button class='btn-social-login' style='background:#D93025'><i class="xi-2x xi-google"></i></button></a>
-            <a href="{% provider_login_url 'naver' %}"><button class='btn-social-login' style='background:#1FC700'><i class="xi-2x xi-naver"></i></button></a>
-            <a href="{% provider_login_url 'kakao' method='oauth2' %}"><button class='btn-social-login' style='background:#FFEB00'><i class="xi-2x xi-kakaotalk text-dark"></i></button></a>
+            {% comment %} <a href="{% provider_login_url 'google' %}"><button class='btn-social-login' style='background:#D93025'><i class="xi-2x xi-google"></i></button></a> {% endcomment %}
+            <a href="{% url 'login:naver-login' %}"><button class='btn-social-login' style='background:#1FC700'><i class="xi-2x xi-naver"></i></button></a>
+            <a href="{% url 'login:kakao-login' %}"><button class='btn-social-login' style='background:#FFEB00'><i class="xi-2x xi-kakaotalk text-dark"></i></button></a>
         {% endif %}
     </div>
 </div>
