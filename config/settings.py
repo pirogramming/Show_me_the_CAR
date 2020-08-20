@@ -121,7 +121,6 @@ else:
             "USER": os.environ.get("RDS_USER"),
             "PASSWORD": os.environ.get("RDS_PASSWORD"),
             "PORT": "3306",
-            "OPTIONS": {"default-character-set": "utf8"},
         }
     }
 
