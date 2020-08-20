@@ -71,8 +71,6 @@ def shop_detail(request, id):
         raise Http404()
 
 
-
-
 class ShopListView(ListView):
 
     """ ShopListView definition """
@@ -96,5 +94,6 @@ def shop_like_ajax(request):
     elif action == "remove_like":
         shop.like_users.remove(user)
     shop.save()
+    print(shop)
     data = {}
     return JsonResponse(data)

@@ -22,7 +22,7 @@
         <h1>{% trans "로그아웃" %}</h1>
         <p>{% trans "아래 버튼을 눌러 로그아웃을 완료해주세요." %}</p>
         <div class="logout__btn__container">
-            <form method="post" action="{% url 'account_logout' %}">
+            <form method="post" action="{% url 'login:logout' %}">
                 {% csrf_token %}
                 {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>

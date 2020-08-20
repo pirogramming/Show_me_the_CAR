@@ -77,24 +77,21 @@ const ratingToStars = (my_rating) => {
   emptyStar.setAttribute("class", "far fa-star");
 
   starElement.appendChild(emptyStar);
-  console.log(starElement)
+  console.log(starElement);
 
   // for(let i=1; i<=5; i++){
   //   starContainer.appendChild(starElement);
   //   starContainer.appendChild(starElement);
   //   starContainer.appendChild(starElement);
-    // console.log(starContainer)
+  // console.log(starContainer)
   // }
-  for(let i=1; i<=my_rating; i++){
+  for (let i = 1; i <= my_rating; i++) {
     const element = starContainer.querySelector(".jsStarElement");
     element.replaceChild(solidStar, element.firstChild);
   }
-  console.log(starContainer.outerHTML)
+  console.log(starContainer.outerHTML);
   return starContainer.outerHTML;
-
-
-
-}
+};
 
 const clickRate = (shop_id, url, el) => {
   // Prevent refresh

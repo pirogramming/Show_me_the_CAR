@@ -38,19 +38,28 @@
 <div class="login__container">
     <h1>로그인</h1>
     {% if user.is_authenticated %}
-        <h4>{{user.username}} 님 안녕하세요!</h4>
+        <h4>{{user.first_name}}님 안녕하세요!</h4>
     {% else %}
         <h4>로그인해서 대리점을 찜해보세요!</h4>
     {% endif %}
     <div class="login__btn__container">
         {% if user.is_authenticated %}
-            <button><a href="/accounts/logout">로그아웃</a></button>
+            <button><a href="{% url 'login:logout_page' %}">로그아웃</a></button>
             <button><a href="{% url 'users:mypage' %}">마이페이지</a></button>
         {% else %}
-            {% comment %} <a href="{% provider_login_url 'google' %}"><button class='btn-social-login' style='background:#D93025'><i class="xi-2x xi-google"></i></button></a> {% endcomment %}
-            <a href="{% url 'login:naver-login' %}"><button class='btn-social-login' style='background:#1FC700'><i class="xi-2x xi-naver"></i></button></a>
+            <form action="{% url 'login:google-login' %}">
+                {% csrf_token %}
+                <button class='btn-social-login' style='background:#D93025'><i class="xi-2x xi-google"></i></button>
+            </form>
+            <form action="{% url 'login:naver-login' %}">
+                {% csrf_token %}
+                <button class='btn-social-login' style='background:#1FC700'><i class="xi-2x xi-naver"></i></button>
+            </form>
             <a href="{% url 'login:kakao-login' %}"><button class='btn-social-login' style='background:#FFEB00'><i class="xi-2x xi-kakaotalk text-dark"></i></button></a>
         {% endif %}
     </div>
 </div>
 {% endblock %}
+{% block javascript %}
+    <script src="{% static 'js/social_login.js' %}"></script>
+{% endblock javascript %}
