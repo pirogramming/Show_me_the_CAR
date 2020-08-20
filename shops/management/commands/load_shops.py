@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         path = kwargs["path"]
-        with open(path, "rt") as f:
+        with open(path, "rt", encoding="utf8") as f:
             reader = csv.reader(f)
             orders = list(reader)
             for row in orders:
