@@ -47,8 +47,8 @@ class Command(BaseCommand):
                         model_name=row[5], color=row[6],
                     )
                     brand, success = car_models.Brand.objects.get_or_create(name=row[7])
-                    print(brand)
+                    # print(brand)
                     brand.cars.add(car)
-                    print(car)
+                    # print(car)
                 car.shop.add(shop)
                 car.save()
