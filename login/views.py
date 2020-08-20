@@ -10,6 +10,7 @@ def login_page(request):
 
 
 def kakao_login(request):
+    debug = os.environ.get("DEBUG")
     client_id = os.environ.get("KAKAO_ID")
     print(client_id)
     redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
