@@ -4,17 +4,18 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from users import models as user_models
 
+DEBUG = bool(os.environ.get("DEBUG"))
+
 
 def login_page(request):
     return render(request, "login/login.html")
 
 
 def kakao_login(request):
-    DEBUG = os.environ.get("DEBUG")
     if DEBUG:
         redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
     else:
-        redirect_uri = 
+        redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/kakao/callback"
     client_id = os.environ.get("KAKAO_ID")
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}"
@@ -29,7 +30,10 @@ def kakao_callback(request):
     try:
         code = request.GET.get("code")
         client_id = os.environ.get("KAKAO_ID")
-        redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
+        if DEBUG:
+            redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
+        else:
+            redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/kakao/callback"
         token_request = requests.get(
             f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}"
         )
@@ -71,10 +75,13 @@ def kakao_callback(request):
 
 def naver_login(request):
     client_id = os.environ.get("NAVER_ID")
-    request_uri = "http://127.0.0.1:8000/login/naver/callback"
+    if DEBUG:
+        redirect_uri = "http://127.0.0.1:8000/login/naver/callback"
+    else:
+        redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/naver/callback"
     state = request.GET.get("csrfmiddlewaretoken")
     return redirect(
-        f"https://nid.naver.com/oauth2.0/authorize?client_id={client_id}&response_type=code&redirect_uri={request_uri}&state={state}"
+        f"https://nid.naver.com/oauth2.0/authorize?client_id={client_id}&response_type=code&redirect_uri={redirect_uri}&state={state}"
     )
 
 
@@ -126,13 +133,16 @@ def naver_callback(request):
 
 def google_login(request):
     client_id = os.environ.get("GOOGLE_ID")
-    request_uri = "http://127.0.0.1:8000/login/google/callback"
+    if DEBUG:
+        redirect_uri = "http://127.0.0.1:8000/login/google/callback"
+    else:
+        redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/google/callback"
     scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
     include_granted_scopes = "true"
     access_type = "offline"
     state = request.GET.get("csrfmiddlewaretoken")
     return redirect(
-        f"https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&response_type=code&redirect_uri={request_uri}&state={state}&scope={scope}&include_granted_scopes={include_granted_scopes}&access_type={access_type}"
+        f"https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&response_type=code&redirect_uri={redirect_uri}&state={state}&scope={scope}&include_granted_scopes={include_granted_scopes}&access_type={access_type}"
     )
 
 
@@ -145,9 +155,12 @@ def google_callback(request):
         code = request.GET.get("code")
         client_id = os.environ.get("GOOGLE_ID")
         client_secret = os.environ.get("GOOGLE_SECRET")
-        request_uri = "http://127.0.0.1:8000/login/google/callback"
+        if DEBUG:
+            redirect_uri = "http://127.0.0.1:8000/login/google/callback"
+        else:
+            redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/google/callback"
         token_request = requests.post(
-            f"https://oauth2.googleapis.com/token?grant_type=authorization_code&code={code}&client_id={client_id}&client_secret={client_secret}&redirect_uri={request_uri}"
+            f"https://oauth2.googleapis.com/token?grant_type=authorization_code&code={code}&client_id={client_id}&client_secret={client_secret}&redirect_uri={redirect_uri}"
         )
         token_json = token_request.json()
         access_token = token_json.get("access_token")
