@@ -10,10 +10,12 @@ def login_page(request):
 
 
 def kakao_login(request):
-    debug = os.environ.get("DEBUG")
+    DEBUG = os.environ.get("DEBUG")
+    if DEBUG:
+        redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
+    else:
+        redirect_uri = 
     client_id = os.environ.get("KAKAO_ID")
-    print(client_id)
-    redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}"
     )
