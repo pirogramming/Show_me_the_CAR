@@ -64,16 +64,11 @@
  
 ## Team
 
-<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_1.png" width="100">
-팀장: 이혜인
-<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_2.png" width="100">
-유병욱
-<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_3.jpeg" width="100">
-박소민
-<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_4.png" width="100">
-정수현
-<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_5.png" width="100">
-김우영
+<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_1.png" width="100"> 팀장: 이혜인
+<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_2.png" width="100"> 유병욱
+<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_3.jpeg" width="100"> 박소민
+<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_4.png" width="100"> 정수현
+<img src="https://bogota-bucket-piro13.s3.amazonaws.com/static/images/team_5.png" width="100"> 김우영
 
 
 ## Acknowledgments
@@ -82,9 +77,9 @@
 13기의 다른 프로젝트도 재밌는 프로젝트가 많으니 함께 봐주시면 감사합니다.<br />
 
 [피로그래밍 바로가기]
-<p align="center">
-  <a href="https://github.com/pirogramming">
-     <img alt="Pirogramming" title="Pirogramming" src="https://avatars3.githubusercontent.com/u/47470966?s=200&v=4" width="100">
-  </a>
-</p>
+
+<a href="https://github.com/pirogramming">
+   <img alt="Pirogramming" title="Pirogramming" src="https://avatars3.githubusercontent.com/u/47470966?s=200&v=4" width="100">
+</a>
+
 
