@@ -15,7 +15,7 @@ def kakao_login(request):
     if DEBUG:
         redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
     else:
-        redirect_uri = "https://bogota.kr/login/naver/callback"
+        redirect_uri = "https://bogota.kr/login/kakao/callback"
     client_id = os.environ.get("KAKAO_ID")
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}"
