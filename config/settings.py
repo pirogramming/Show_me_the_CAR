@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "l3mw4f99im4lng&e59hual#gj=cm6z(&742@6u%i7yjr+#2m%g"
+SECRET_KEY = os.environ.get("DJANGO_SECRET", "DtmMDhGz%jhMKJy@ZTqgezKGjX4^QM")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG"))
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [".elasticbeanstalk.com", "localhost", "bogota.kr", "www.bogota.kr", ]
+print(f"DEBUG: {DEBUG}")
 
 
 # Application definition
@@ -47,6 +50,10 @@ DJANGO_APPS = [
     # "allauth.socialaccount.providers.kakao",
 ]
 
+THIRD_PARTY_APPS = [
+    "storages",
+]
+
 PROJECT_APPS = [
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
@@ -55,7 +62,7 @@ PROJECT_APPS = [
     "login.apps.LoginConfig",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -94,12 +101,28 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+
+if DEBUG:
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
+
+else:
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "HOST": os.environ.get("RDS_HOST"),
+            "NAME": os.environ.get("RDS_NAME"),
+            "USER": os.environ.get("RDS_USER"),
+            "PASSWORD": os.environ.get("RDS_PASSWORD"),
+            "PORT": "3306",
+        }
+    }
 
 
 # Password validation
@@ -158,3 +181,23 @@ FORM_RENDERER = (
     "django.forms.renderers.TemplatesSetting"  # 위젯 폼 렌더링 문제, 왜 발생하는지 모르겠는데 이거 넣으면 해결됨
 )
 
+
+if not DEBUG:
+
+    # Sentry
+    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = "bogota-bucket-piro13"
+
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+
+    sentry_sdk.init(
+        dsn=os.environ.get("SENTRY_URL"),
+        integrations=[DjangoIntegration()],
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+    )

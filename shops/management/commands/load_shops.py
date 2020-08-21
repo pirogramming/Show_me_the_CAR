@@ -12,8 +12,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         path = kwargs["path"]
-        with open(path, "rt") as f:
-            reader = csv.reader(f, dialect={"encoding": "utf-8-sig"})
+        with open(path, "rt", encoding="utf8") as f:
+            reader = csv.reader(f)
             orders = list(reader)
             for row in orders:
                 if len(row) == 0:
@@ -47,8 +47,6 @@ class Command(BaseCommand):
                         model_name=row[5], color=row[6],
                     )
                     brand, success = car_models.Brand.objects.get_or_create(name=row[7])
-                    print(brand)
                     brand.cars.add(car)
-                    print(car)
                 car.shop.add(shop)
                 car.save()

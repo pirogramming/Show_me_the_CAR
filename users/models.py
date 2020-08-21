@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from core import managers as core_managers
 
 
 class User(AbstractUser):
@@ -23,3 +24,5 @@ class User(AbstractUser):
     login_method = models.CharField(
         max_length=50, choices=LOGIN_CHOICES, default=LOGIN_KAKAO
     )
+    objects = core_managers.CustomUserManager()
+
