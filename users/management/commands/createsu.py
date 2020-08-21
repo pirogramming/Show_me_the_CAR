@@ -10,7 +10,7 @@ class Command(BaseCommand):
         admin = User.objects.get_or_none(username="admin")
         if not admin:
             User.objects.create_superuser(
-                "admin", "support@bogota.com", "Bogota_piro13!"
+                "admin", "bogotacontacts@gmail.com", "Bogota_piro13!"
             )
             self.stdout.write(self.style.SUCCESS(f"Superuser Created"))
         else:
