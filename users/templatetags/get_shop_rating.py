@@ -9,4 +9,6 @@ register = template.Library()
 @register.filter
 def get_shop_rating(shop_ratings, user):
     rating = shop_ratings.get(user=user).rating
+    if rating is None:
+        rating = "없음"
     return rating

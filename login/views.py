@@ -15,7 +15,7 @@ def kakao_login(request):
     if DEBUG:
         redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
     else:
-        redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/kakao/callback"
+        redirect_uri = "https://bogota.kr/login/naver/callback"
     client_id = os.environ.get("KAKAO_ID")
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}"
@@ -33,7 +33,7 @@ def kakao_callback(request):
         if DEBUG:
             redirect_uri = "http://127.0.0.1:8000/login/kakao/callback"
         else:
-            redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/kakao/callback"
+            redirect_uri = "https://bogota.kr/login/kakao/callback"
         token_request = requests.get(
             f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}"
         )
@@ -78,7 +78,7 @@ def naver_login(request):
     if DEBUG:
         redirect_uri = "http://127.0.0.1:8000/login/naver/callback"
     else:
-        redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/naver/callback"
+        redirect_uri = "https://bogota.kr/login/naver/callback"
     state = request.GET.get("csrfmiddlewaretoken")
     return redirect(
         f"https://nid.naver.com/oauth2.0/authorize?client_id={client_id}&response_type=code&redirect_uri={redirect_uri}&state={state}"
@@ -136,7 +136,7 @@ def google_login(request):
     if DEBUG:
         redirect_uri = "http://127.0.0.1:8000/login/google/callback"
     else:
-        redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/google/callback"
+        redirect_uri = "https://bogota.kr/login/google/callback"
     scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
     include_granted_scopes = "true"
     access_type = "offline"
@@ -158,7 +158,7 @@ def google_callback(request):
         if DEBUG:
             redirect_uri = "http://127.0.0.1:8000/login/google/callback"
         else:
-            redirect_uri = "http://bogota.eba-5p3nzspm.ap-northeast-2.elasticbeanstalk.com/login/google/callback"
+            redirect_uri = "https://bogota.kr/login/google/callback"
         token_request = requests.post(
             f"https://oauth2.googleapis.com/token?grant_type=authorization_code&code={code}&client_id={client_id}&client_secret={client_secret}&redirect_uri={redirect_uri}"
         )
