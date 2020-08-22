@@ -21,7 +21,7 @@
         <div class="shop__detail__container">
             <div class="shop__detail__name">
                 <h1>
-                    {{ shop.name }} 대리점
+                    {{ shop.name }}
                     {% if user in shop.like_users.all %}
                         <button name="like-button" type="submit" onClick="clickLike(pk={{shop.pk}}, url='{% url 'shops:shop_like_ajax' %}', csrf_token='{{ csrf_token }}')" value="liked" class="" id=like-button{{shop.pk}}>
                         <i class="fas fa-heart"></i>
